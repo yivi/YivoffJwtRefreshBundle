@@ -4,7 +4,7 @@ namespace Yivoff\JwtTokenRefresh;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-class JwtTokenRefreshBundle extends Bundle
+class YivoffJwtRefreshBundle extends Bundle
 {
 
 }
