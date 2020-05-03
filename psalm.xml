@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<psalm
+    totallyTyped="false"
+    errorLevel="4"
+    resolveFromConfigFile="true"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="https://getpsalm.org/schema/config"
+    xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd"
+>
+    <projectFiles>
+        <directory name="Contracts" />
+        <directory name="DependencyInjection" />
+        <directory name="EventListener" />
+        <directory name="Model" />
+        <directory name="Resources" />
+        <directory name="Security" />
+        <directory name="Service" />
+        <file name="JwtTokenRefreshBundle.php" />
+        <ignoreFiles>
+            <directory name="vendor" />
+        </ignoreFiles>
+    </projectFiles>
+</psalm>
