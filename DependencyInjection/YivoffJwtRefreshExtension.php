@@ -36,4 +36,18 @@ class YivoffJwtRefreshExtension extends Extension
         $container->getDefinition(EncoderInterface::class)
                   ->setArgument(0, '%kernel.secret%');
     }
+
+    public function getNamespace(): string
+    {
+        return 'https://yivoff.com/schema/dic/jwt_refresh_bundle';
+    }
+
+    public function getXsdValidationBasePath(): string
+    {
+        return __DIR__ . '/../Resources/config/schema';
+    }
+
+
+
+
 }

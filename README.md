@@ -60,11 +60,21 @@ firewalls:
 Notice the content for `firewall.login.guard.authenticators`.
 
 ### Bundle Configuration:
+**Yaml**
 ```yaml
 yivoff_jwt_refresh:
     token_provider_service: 'App\Repository\AuthRefreshTokenRepository'
     token_ttl: 3600
     parameter_name: 'refresh_token'
+```
+
+**XML**
+```xml
+<yivoff_jwt_refresh xmlns="https://yivoff.com/schema/dic/jwt_refresh_bundle">
+    <provider_service>App\Infrastructure\Redis\Repository\AuthRefreshTokenRepository</provider_service>
+    <parameter_name>refresh_token</parameter_name>
+    <token_ttl>3600</token_ttl>
+</yivoff_jwt_refresh>
 ```
 
 * `token_provider_service` 

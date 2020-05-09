@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        xmlns="https://yivoff.com/schema/dic/jwt_refresh_bundle"
+        targetNamespace="https://yivoff.com/schema/dic/jwt_refresh_bundle"
+        elementFormDefault="qualified"
+>
+    <xs:element name="yivoff_jwt_refresh">
+        <xs:complexType>
+            <xs:all>
+                <xs:element type="xs:string" name="provider_service"/>
+                <xs:element type="xs:unsignedLong" name="token_ttl" minOccurs="0"/>
+                <xs:element type="xs:string" name="parameter_name" minOccurs="0"/>
+            </xs:all>
+
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
+
