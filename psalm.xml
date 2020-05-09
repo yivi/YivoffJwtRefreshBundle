@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <psalm
     totallyTyped="false"
-    errorLevel="4"
+    errorLevel="1"
     resolveFromConfigFile="true"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns="https://getpsalm.org/schema/config"
@@ -15,9 +15,10 @@
         <directory name="Resources" />
         <directory name="Security" />
         <directory name="Service" />
-        <file name="JwtTokenRefreshBundle.php" />
+        <file name="YivoffJwtRefreshBundle.php" />
         <ignoreFiles>
             <directory name="vendor" />
+            <file name="DependencyInjection/Configuration.php"/>
         </ignoreFiles>
     </projectFiles>
 </psalm>
