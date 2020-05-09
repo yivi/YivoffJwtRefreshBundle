@@ -41,7 +41,7 @@ by this bundle (`Yivoff\JwtTokenRefresh\Security\Authenticator`).
 
 E.g, for a typical configuration:
 
-```
+```yaml
 firewalls:
     login:
         pattern:  ^/login
@@ -86,7 +86,7 @@ On any regular JSON authentication, the bundle will inject a refresh token on a 
 defined on the configuration. A typical request/response would be:
 
 **Request**
-```
+```http request
 POST http://localhost:7099/login_check
 Content-Type: application/json
 
@@ -96,7 +96,7 @@ Content-Type: application/json
 }
 ```
 **Response**
-```
+```http request
 HTTP/1.1 200 OK
 Date: Sat, 09 May 2020 16:01:37 GMT
 Connection: close
@@ -111,7 +111,7 @@ Content-Type: application/json
 It is not necessary to register a new route for the "refresh" path. To get a new authentication JWT, you simply call the
 same login path with `POST` HTTP parameter with the same name and value that we received previously:
 
-```
+```http request
 POST http://localhost:7099/login_check
 Content-Type: application/x-www-form-urlencoded
 
