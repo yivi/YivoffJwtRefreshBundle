@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Yivoff\JwtTokenRefresh\Service;
+namespace Yivoff\Bundle\JwtRefresh\Service;
 
 use Yivoff\Bundle\JwtRefresh\Contracts\EncoderInterface;
 

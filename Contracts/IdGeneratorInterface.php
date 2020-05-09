@@ -2,7 +2,6 @@
 
 namespace Yivoff\Bundle\JwtRefresh\Contracts;
 
-
 interface IdGeneratorInterface
 {
 

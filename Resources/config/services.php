@@ -2,13 +2,12 @@
 
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
-use Yivoff\JwtTokenRefresh\Contracts\EncoderInterface;
-use Yivoff\JwtTokenRefresh\Contracts\IdGeneratorInterface;
-use Yivoff\JwtTokenRefresh\EventListener\AttachRefreshToken;
-use Yivoff\JwtTokenRefresh\EventListener\AuthenticationSuccessful;
-use Yivoff\JwtTokenRefresh\Security\Authenticator;
-use Yivoff\JwtTokenRefresh\Service\Encoder;
-use Yivoff\JwtTokenRefresh\Service\IdGenerator;
+use Yivoff\Bundle\JwtRefresh\Contracts\EncoderInterface;
+use Yivoff\Bundle\JwtRefresh\Contracts\IdGeneratorInterface;
+use Yivoff\Bundle\JwtRefresh\EventListener\AttachRefreshToken;
+use Yivoff\Bundle\JwtRefresh\Security\Authenticator;
+use Yivoff\Bundle\JwtRefresh\Service\Encoder;
+use Yivoff\Bundle\JwtRefresh\Service\IdGenerator;
 
 return static function (ContainerConfigurator $container) {
     $services = $container->services()
