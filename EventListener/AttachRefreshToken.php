@@ -1,15 +1,15 @@
 <?php declare(strict_types=1);
 
-namespace Yivoff\JwtRefresh\EventListener;
+namespace Yivoff\Bundle\JwtRefresh\EventListener;
 
 use DateInterval;
 use DateTimeImmutable;
 use Lexik\Bundle\JWTAuthenticationBundle\Event\AuthenticationSuccessEvent;
 use Symfony\Component\Security\Core\User\UserInterface;
-use Yivoff\JwtRefresh\Contracts\EncoderInterface;
-use Yivoff\JwtRefresh\Contracts\IdGeneratorInterface;
-use Yivoff\JwtRefresh\Contracts\RefreshTokenProviderInterface;
-use Yivoff\JwtRefresh\Model\RefreshToken;
+use Yivoff\Bundle\JwtRefresh\Contracts\EncoderInterface;
+use Yivoff\Bundle\JwtRefresh\Contracts\IdGeneratorInterface;
+use Yivoff\Bundle\JwtRefresh\Contracts\RefreshTokenProviderInterface;
+use Yivoff\Bundle\JwtRefresh\Model\RefreshToken;
 
 final class AttachRefreshToken
 {

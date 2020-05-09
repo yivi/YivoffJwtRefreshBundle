@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Yivoff\JwtRefresh\Contracts;
+namespace Yivoff\Bundle\JwtRefresh\Contracts;
 
 interface RefreshTokenProviderInterface
 {

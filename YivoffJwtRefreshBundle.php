@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Yivoff\JwtRefresh;
+namespace Yivoff\Bundle\JwtRefresh;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 

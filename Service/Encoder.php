@@ -2,7 +2,7 @@
 
 namespace Yivoff\JwtTokenRefresh\Service;
 
-use Yivoff\JwtRefresh\Contracts\EncoderInterface;
+use Yivoff\Bundle\JwtRefresh\Contracts\EncoderInterface;
 
 class Encoder implements EncoderInterface
 {

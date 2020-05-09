@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Yivoff\JwtRefresh\Security;
+namespace Yivoff\Bundle\JwtRefresh\Security;
 
 use Lexik\Bundle\JWTAuthenticationBundle\Security\Http\Authentication\AuthenticationSuccessHandler;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -11,8 +11,8 @@ use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Guard\AbstractGuardAuthenticator;
-use Yivoff\JwtRefresh\Contracts\EncoderInterface;
-use Yivoff\JwtRefresh\Contracts\RefreshTokenProviderInterface;
+use Yivoff\Bundle\JwtRefresh\Contracts\EncoderInterface;
+use Yivoff\Bundle\JwtRefresh\Contracts\RefreshTokenProviderInterface;
 
 final class Authenticator extends AbstractGuardAuthenticator
 {

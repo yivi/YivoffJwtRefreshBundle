@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Yivoff\JwtRefresh\DependencyInjection;
+namespace Yivoff\Bundle\JwtRefresh\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;

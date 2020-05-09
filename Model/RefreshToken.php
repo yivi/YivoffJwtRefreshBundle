@@ -1,9 +1,9 @@
 <?php declare(strict_types=1);
 
-namespace Yivoff\JwtRefresh\Model;
+namespace Yivoff\Bundle\JwtRefresh\Model;
 
 use DateTimeImmutable;
-use Yivoff\JwtRefresh\Contracts\RefreshTokenInterface;
+use Yivoff\Bundle\JwtRefresh\Contracts\RefreshTokenInterface;
 
 class RefreshToken implements RefreshTokenInterface
 {
