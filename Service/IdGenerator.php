@@ -2,7 +2,7 @@
 
 namespace Yivoff\JwtTokenRefresh\Service;
 
-use Yivoff\JwtTokenRefresh\Contracts\IdGeneratorInterface;
+use Yivoff\JwtRefresh\Contracts\IdGeneratorInterface;
 
 class IdGenerator implements IdGeneratorInterface
 {

@@ -1,15 +1,15 @@
 <?php declare(strict_types=1);
 
-namespace Yivoff\JwtTokenRefresh\DependencyInjection;
+namespace Yivoff\JwtRefresh\DependencyInjection;
 
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\PhpFileLoader;
 use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
-use Yivoff\JwtTokenRefresh\Contracts\EncoderInterface;
-use Yivoff\JwtTokenRefresh\EventListener\AttachRefreshToken;
-use Yivoff\JwtTokenRefresh\Security\Authenticator;
+use Yivoff\JwtRefresh\Contracts\EncoderInterface;
+use Yivoff\JwtRefresh\EventListener\AttachRefreshToken;
+use Yivoff\JwtRefresh\Security\Authenticator;
 
 class YivoffJwtRefreshExtension extends Extension
 {
