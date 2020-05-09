@@ -22,7 +22,7 @@ class YivoffJwtRefreshExtension extends Extension
 
         $loader->load('services.php');
 
-        $providerReference = new Reference($config['token_provider_service']);
+        $providerReference = new Reference((string)$config['token_provider_service']);
 
         $container->getDefinition(AttachRefreshToken::class)
                   ->setArgument(2, $config['parameter_name'])

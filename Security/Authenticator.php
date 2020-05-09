@@ -58,7 +58,7 @@ final class Authenticator extends AbstractGuardAuthenticator
 
     public function getUser($credentials, UserProviderInterface $userProvider): UserInterface
     {
-        if (strpos($credentials, ':') === false) {
+        if (strpos((string)$credentials, ':') === false) {
             throw new AuthenticationException('Invalid Token Format');
         }
 
