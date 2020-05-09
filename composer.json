@@ -1,10 +1,10 @@
 {
-  "name": "yivoff/jwt-token-refresh",
+  "name": "yivoff/jwt-refresh-bundle",
   "description": "Token Refresh for JWT. Independent of persistence layer, splitting id/hash for verification",
   "type": "symfony-bundle",
   "autoload": {
     "psr-4": {
-      "Yivoff\\JwtTokenRefresh\\": ""
+      "Yivoff\\JwtRefresh\\": ""
     }
   },
   "require": {
