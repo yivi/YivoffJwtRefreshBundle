@@ -10,7 +10,7 @@ class Configuration implements ConfigurationInterface
 
     public function getConfigTreeBuilder(): TreeBuilder
     {
-        $treeBuilder = new TreeBuilder('jwt_token_refresh');
+        $treeBuilder = new TreeBuilder('yivoff_jwt_refresh');
 
         $treeBuilder
             ->getRootNode()
