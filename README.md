@@ -4,7 +4,7 @@ This package provides a way to generate "refresh tokens" that users can use to o
 when the previous one expires. This is a companion for [lexik/LexikJWTAuthenticationBundle], and it is not usable on its
 own.
 
-Requires PHP 7.4+.
+Requires PHP 7.4+, Symfony 5+
 
 ## Description 
 
@@ -23,7 +23,7 @@ auth-tokens.
 ### Installation
 
 ```bash
-$ composer require yivoff/jwt-refresh
+$ composer require yivoff/jwt-refresh-bundle
 ```
 
 ### Basic Requirements
