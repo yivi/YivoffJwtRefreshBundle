@@ -19,8 +19,8 @@ return static function (ContainerConfigurator $container) {
         ->tag('kernel.event_listener', ['event' => 'lexik_jwt_authentication.on_authentication_success'])
         ->args(
             [
-                ref(EncoderInterface::class),
-                ref(IdGeneratorInterface::class),
+                service(EncoderInterface::class),
+                service(IdGeneratorInterface::class),
                 null,
                 null,
                 null,
@@ -42,8 +42,8 @@ return static function (ContainerConfigurator $container) {
         ->set(Authenticator::class)
         ->args(
             [
-                ref('yivoff.token_refresh.encoder'),
-                ref('lexik_jwt_authentication.handler.authentication_success'),
+                service('yivoff.token_refresh.encoder'),
+                service('lexik_jwt_authentication.handler.authentication_success'),
                 null,
                 null,
             ]
