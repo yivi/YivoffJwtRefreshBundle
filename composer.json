@@ -9,16 +9,16 @@
     }
   },
   "require": {
-    "php": ">=7.4",
-    "symfony/dependency-injection": "^5.0",
-    "symfony/framework-bundle": "^5.0",
-    "symfony/yaml": "^5.0",
-    "lexik/jwt-authentication-bundle": "^2.6.5",
-    "symfony/config": "^4.4|^5.0"
+    "php": ">=8.0",
+    "symfony/dependency-injection": "^5.3",
+    "symfony/framework-bundle": "^5.3",
+    "symfony/yaml": "^5.3",
+    "lexik/jwt-authentication-bundle": "^v2.11.3",
+    "symfony/config": "^5.3"
   },
   "require-dev": {
     "roave/security-advisories": "dev-master",
-    "phpunit/phpunit": "9.1.4",
-    "vimeo/psalm": "^3.11"
+    "phpunit/phpunit": "9.5.5",
+    "vimeo/psalm": "^4.8.1"
   }
 }

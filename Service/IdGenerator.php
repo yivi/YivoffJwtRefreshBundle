@@ -4,6 +4,8 @@ namespace Yivoff\Bundle\JwtRefresh\Service;
 
 use Yivoff\Bundle\JwtRefresh\Contracts\IdGeneratorInterface;
 
+use function random_bytes;
+
 class IdGenerator implements IdGeneratorInterface
 {
 
