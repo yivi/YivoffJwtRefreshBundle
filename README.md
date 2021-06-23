@@ -48,9 +48,8 @@ firewalls:
         stateless: true
         anonymous: true
         provider: users_in_memory
-        guard:
-            authenticators:
-                - Yivoff\JwtTokenRefresh\Security\Authenticator
+        custom_authenticators:
+          - Yivoff\JwtTokenRefresh\Security\Authenticator
         json_login:
             check_path:               /login_check
             success_handler:          lexik_jwt_authentication.handler.authentication_success
