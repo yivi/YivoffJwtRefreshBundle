@@ -2,3 +2,5 @@
 /vendor
 /var
 *.cache
+/vendor-bin/**/vendor
+.idea/
