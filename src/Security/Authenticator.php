@@ -26,14 +26,14 @@ final class Authenticator extends AbstractAuthenticator
         private AuthenticationSuccessHandler $successHandler,
         private RefreshTokenProviderInterface $tokenProvider,
         private string $parameterName
-    ) {
-    }
+    ) {}
 
     public function authenticate(HttpFoundation\Request $request): PassportInterface
     {
         $credentials = (string) $request->request->get($this->parameterName);
 
         if (!str_contains($credentials, ':')) {
+
             throw new AuthenticationException('Invalid Token Format');
         }
 
