@@ -2,6 +2,7 @@
   "name": "yivoff/jwt-refresh-bundle",
   "description": "Token Refresh for JWT. Independent of persistence layer, splitting id/hash for verification",
   "type": "symfony-bundle",
+  "license": "MIT",
   "autoload": {
     "psr-4": {
       "Yivoff\\JwtRefreshBundle\\": "src"
