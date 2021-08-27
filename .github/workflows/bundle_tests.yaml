@@ -55,7 +55,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: install deps, to execute things
-        run: composer install --no-scripts --no-plugins --no-autoloader --no-progress --ignore-platform-reqs
+        run: composer install --no-autoloader --no-progress --ignore-platform-reqs
 
       - name: install php cs fixer
         run: composer bin csfixer install --no-scripts --no-plugins --no-progress --ignore-platform-reqs

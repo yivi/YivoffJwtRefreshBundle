@@ -1,5 +1,12 @@
 # yivoff/jwt-refresh-bundle
 
+[![Latest Stable Version](http://poser.pugx.org/yivoff/jwt-refresh-bundle/v)](https://packagist.org/packages/yivoff/jwt-refresh-bundle)
+[![Total Downloads](http://poser.pugx.org/yivoff/jwt-refresh-bundle/downloads)](https://packagist.org/packages/yivoff/jwt-refresh-bundle)
+[![Latest Unstable Version](http://poser.pugx.org/yivoff/jwt-refresh-bundle/v/unstable)](https://packagist.org/packages/yivoff/jwt-refresh-bundle)
+[![License](http://poser.pugx.org/yivoff/jwt-refresh-bundle/license)](https://packagist.org/packages/yivoff/jwt-refresh-bundle)
+![Tests](https://github.com/yivi/YivoffJwtRefreshBundle/actions/workflows/bundle_tests.yaml/badge.svg)
+[![codecov](https://codecov.io/gh/yivi/YivoffJwtRefreshBundle/branch/master/graph/badge.svg?token=4JDTQ4IDN7)](https://codecov.io/gh/yivi/YivoffJwtRefreshBundle)
+
 * [Description](#description)
 * [Requirements](#requirements)
 * [Installation and setup](#installation-and-setup)
