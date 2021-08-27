@@ -11,9 +11,11 @@
 * [Requirements](#requirements)
 * [Installation and setup](#installation-and-setup)
   * [Installation](#installation)
-  * [Required Implementation](#required-implementation)
+  * [Token Provider Implementation](#token-provider-implementation)
+    * [Purgable Provider](#purgable-provider)
   * [Security Integration](#security-integration) 
   * [Bundle Configuration](#bundle-configuration)
+  * [Purge Command](#purge-command)
 * [Usage](#usage)
 
 ## Description 
@@ -44,13 +46,23 @@ Requires PHP 8+, Symfony 5.3+
 ```bash
 $ composer require yivoff/jwt-refresh-bundle
 ```
-### Required Implementation
-Write an implementation for `RefreshTokenProviderInterface`. Use `yivoff_jwt_refresh.token_provider_service` to tell the
-bundle to use it to get/add/remove tokens.
+### Token Provider Implementation
+
+This package makes no assumptions about the nature of your token provider. To be able to use it you'll need to implement
+your own, either a regular Doctrime ORM repository or whatever better suits your project.
+
+You'll need to have a service that implements `RefreshTokenProviderInterface`, and then on the bundle configuration, on
+`yivoff_jwt_refresh.token_provider_service` you'll write down the service ID that the bundle will use for
+getting/adding/removing tokens.
 
 This service is responsible, directly or indirectly, of mediating with your persistance layer of choice, and  should
 return/accept [`RefreshTokenInterface`][2] instances. Either your application token entity implements this interface
 directly, or your token-provider adapts between your native entities, and the provided [`RefreshToken`][3] class.
+
+#### Purgable Provider
+
+Your token provider can additionally implement `PurgableRefreshTokenProviderInterface`, to have a convenience method to 
+clear up all the stale tokens. This is necessary if you want to use the included [purge command](#purge-command)
 
 ### Security integration
 
@@ -107,6 +119,14 @@ yivoff_jwt_refresh:
 
     Name of the HTTP `POST` parameter that will hold the refresh token. `refresh_token` by default.
 
+### Purge command
+If `symfony/console` is installed on your project, and your Token Provider implements
+`PurgableRefreshTokenProviderInterface`, you can use a command to delete all the existing tokens that have already
+expired.
+
+The command can simply be executed by running `bin/console yivoff:jwt_refresh:purge_expired_tokens`. On non-error
+conditions, it produces no output.
+
 ### Usage
 
 On any regular JSON authentication, the bundle will inject a refresh token on a field named as the `parameter_name`
@@ -144,7 +164,6 @@ Content-Type: application/x-www-form-urlencoded
 
 refresh_token=bd8b1a304dc39dda3d10a38788b2ebf7:f52ac998773d552a0c639c2f85ffa5f2e18df2f1a3f528c9ddc3fcd8c6ba2f31
 ```
-
 
 
 [1]: https://github.com/yivi/YivoffJwtRefreshBundle/blob/master/Contracts/RefreshTokenProviderInterface.php
