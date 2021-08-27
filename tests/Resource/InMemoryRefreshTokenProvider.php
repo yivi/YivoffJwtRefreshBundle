@@ -4,14 +4,13 @@ declare(strict_types=1);
 
 namespace Yivoff\JwtRefreshBundle\Test\Resource;
 
+use InvalidArgumentException;
 use Yivoff\JwtRefreshBundle\Contracts\RefreshTokenInterface;
 use Yivoff\JwtRefreshBundle\Contracts\RefreshTokenProviderInterface;
-
 use function array_key_exists;
 
 class InMemoryRefreshTokenProvider implements RefreshTokenProviderInterface
 {
-
     /** @var array<string, \Yivoff\JwtRefreshBundle\Contracts\RefreshTokenInterface> */
     protected array $tokens = [];
 
@@ -34,7 +33,7 @@ class InMemoryRefreshTokenProvider implements RefreshTokenProviderInterface
     public function add(RefreshTokenInterface $refreshToken): void
     {
         if (array_key_exists($refreshToken->getIdentifier(), $this->tokens)) {
-            throw new \InvalidArgumentException('Cannot add a duplicated token');
+            throw new InvalidArgumentException('Cannot add a duplicated token');
         }
 
         $this->tokens[$refreshToken->getIdentifier()] = $refreshToken;
@@ -50,5 +49,4 @@ class InMemoryRefreshTokenProvider implements RefreshTokenProviderInterface
 
         return null;
     }
-
 }

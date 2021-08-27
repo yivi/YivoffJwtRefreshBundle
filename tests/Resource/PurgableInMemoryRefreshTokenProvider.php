@@ -9,7 +9,6 @@ use Yivoff\JwtRefreshBundle\Contracts\PurgableRefreshTokenProviderInterface;
 
 class PurgableInMemoryRefreshTokenProvider extends InMemoryRefreshTokenProvider implements PurgableRefreshTokenProviderInterface
 {
-
     public function purgeExpiredTokens(): void
     {
         foreach ($this->tokens as $tokenId => $token) {

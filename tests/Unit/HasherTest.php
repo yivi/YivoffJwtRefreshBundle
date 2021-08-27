@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Yivoff\JwtRefreshBundle\Test\Unit;
 
@@ -7,11 +9,12 @@ use Yivoff\JwtRefreshBundle\Shared\Hasher;
 
 /**
  * @covers \Yivoff\JwtRefreshBundle\Shared\Hasher
+ *
+ * @internal
  */
 class HasherTest extends TestCase
 {
-
-    public function testHashChecksOut()
+    public function testHashChecksOut(): void
     {
         $secret = 'very-secret';
         $hasher = new Hasher('very-secret');
@@ -20,5 +23,4 @@ class HasherTest extends TestCase
 
         $this->assertTrue($hasher->verify($secret, $hash));
     }
-
 }

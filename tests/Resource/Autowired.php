@@ -11,7 +11,6 @@ use Yivoff\JwtRefreshBundle\Security\Authenticator;
 
 class Autowired
 {
-
     public function __construct(
         private HasherInterface $encoder,
         private TokenIdGeneratorInterface $generator,

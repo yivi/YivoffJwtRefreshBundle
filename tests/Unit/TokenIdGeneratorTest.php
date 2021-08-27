@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Yivoff\JwtRefreshBundle\Test\Unit;
 
@@ -7,11 +9,12 @@ use Yivoff\JwtRefreshBundle\Shared\TokenIdGenerator;
 
 /**
  * @covers \Yivoff\JwtRefreshBundle\Shared\TokenIdGenerator
+ *
+ * @internal
  */
 class TokenIdGeneratorTest extends TestCase
 {
-
-    public function testIdGeneration()
+    public function testIdGeneration(): void
     {
         $generator = new TokenIdGenerator();
         $id1       = $generator->generateIdentifier(20);
@@ -26,7 +29,6 @@ class TokenIdGeneratorTest extends TestCase
         $this->assertEquals(20, strlen($id2));
         $this->assertEquals(12, strlen($id3));
         $this->assertNotEquals($id1, $id2);
-
 
         $this->assertEquals(35, strlen($v2));
         $this->assertEquals(35, strlen($v1));

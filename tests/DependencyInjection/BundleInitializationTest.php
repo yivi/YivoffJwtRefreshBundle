@@ -24,7 +24,7 @@ class BundleInitializationTest extends KernelTestCase
     {
         self::bootKernel([
             'config' => static function (TestKernel $kernel): void {
-                $kernel->addTestConfig(__DIR__ . '/../Resource/config/config.php');
+                $kernel->addTestConfig(__DIR__.'/../Resource/config/config.php');
             },
         ]);
         $container = self::getContainer();

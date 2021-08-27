@@ -8,7 +8,8 @@ return static function (ContainerConfigurator $configurator): void {
     $services = $configurator->services();
 
     $services
-        ->set(Yivoff\JwtRefreshBundle\Test\Resource\InMemoryRefreshTokenProvider::class);
+        ->set(Yivoff\JwtRefreshBundle\Test\Resource\InMemoryRefreshTokenProvider::class)
+    ;
 
     $configurator->extension(
         'yivoff_jwt_refresh',

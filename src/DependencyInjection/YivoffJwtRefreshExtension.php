@@ -16,6 +16,7 @@ use Yivoff\JwtRefreshBundle\Security\Authenticator;
 use Yivoff\JwtRefreshBundle\Shared\Hasher;
 use Yivoff\JwtRefreshBundle\Shared\TokenIdGenerator;
 use Yivoff\JwtRefreshBundle\YivoffJwtRefreshBundle;
+use function class_exists;
 
 /**
  * @codeCoverageIgnore
@@ -29,7 +30,7 @@ class YivoffJwtRefreshExtension extends Extension
         $config = $this->processConfiguration($configuration, $configs);
 
         foreach ($config as $key => $value) {
-            $container->setParameter(YivoffJwtRefreshBundle::BUNDLE_PREFIX . '.' .$key, $value);
+            $container->setParameter(YivoffJwtRefreshBundle::BUNDLE_PREFIX.'.'.$key, $value);
         }
 
         $providerReference = new Reference((string) $config['token_provider_service']);
@@ -73,10 +74,10 @@ class YivoffJwtRefreshExtension extends Extension
 
         $container->setAlias(YivoffJwtRefreshBundle::BUNDLE_PREFIX.'.token_id_generator', TokenIdGeneratorInterface::class);
 
-        if (\class_exists(Application::class)) {
+        if (class_exists(Application::class)) {
             $container->register(PurgeExpiredTokensCommand::class)
                 ->setArgument(0, $providerReference)
-                ->addTag('console.command', ['command'=>PurgeExpiredTokensCommand::getDefaultName()])
+                ->addTag('console.command', ['command' => PurgeExpiredTokensCommand::getDefaultName()])
             ;
         }
     }

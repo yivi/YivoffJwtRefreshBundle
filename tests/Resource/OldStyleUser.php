@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Yivoff\JwtRefreshBundle\Test\Resource;
 
@@ -6,7 +8,6 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 class OldStyleUser implements UserInterface
 {
-
     public function __construct(private string $username, private ?string $password = null)
     {
     }
@@ -34,6 +35,4 @@ class OldStyleUser implements UserInterface
     {
         return $this->username;
     }
-
-
 }

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Yivoff\JwtRefreshBundle\Console;
 
 use Symfony\Component\Console\Command\Command;
@@ -21,13 +23,14 @@ class PurgeExpiredTokensCommand extends Command
     protected function configure(): void
     {
         $this
-            ->setDescription('Silently deletes all the expired Refresh Tokens (if any) from the configured Provider');
+            ->setDescription('Silently deletes all the expired Refresh Tokens (if any) from the configured Provider')
+        ;
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        if ( ! $this->provider instanceof PurgableRefreshTokenProviderInterface) {
-            (new SymfonyStyle($input, $output))->error('Cannot proceed. Your provider class needs to implement \'' . PurgableRefreshTokenProviderInterface::class . '\'');
+        if (!$this->provider instanceof PurgableRefreshTokenProviderInterface) {
+            (new SymfonyStyle($input, $output))->error('Cannot proceed. Your provider class needs to implement \''.PurgableRefreshTokenProviderInterface::class.'\'');
 
             return Command::FAILURE;
         }
