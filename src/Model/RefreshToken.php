@@ -7,6 +7,9 @@ namespace Yivoff\JwtRefreshBundle\Model;
 use DateTimeImmutable;
 use Yivoff\JwtRefreshBundle\Contracts\RefreshTokenInterface;
 
+/**
+ * @codeCoverageIgnore
+ */
 class RefreshToken implements RefreshTokenInterface
 {
     public function __construct(private string $username, private string $identifier, private string $verifier, private DateTimeImmutable $validUntil)
