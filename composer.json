@@ -4,21 +4,25 @@
   "type": "symfony-bundle",
   "autoload": {
     "psr-4": {
-      "Yivoff\\Bundle\\JwtRefresh\\": "",
-      "Yivoff\\Bundle\\JwtRefresh\\Test\\": "Test"
+      "Yivoff\\JwtRefreshBundle\\": ""
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Yivoff\\JwtRefreshBundle\\Test\\": "Test"
     }
   },
   "require": {
     "php": ">=8.0",
     "symfony/dependency-injection": "^5.3",
     "symfony/framework-bundle": "^5.3",
-    "symfony/yaml": "^5.3",
     "lexik/jwt-authentication-bundle": "^v2.11.3",
     "symfony/config": "^5.3"
   },
   "require-dev": {
     "roave/security-advisories": "dev-master",
-    "phpunit/phpunit": "9.5.5",
-    "vimeo/psalm": "^4.8.1"
+    "bamarni/composer-bin-plugin": "^1.4",
+    "nyholm/symfony-bundle-test": "dev-master",
+    "symfony/console": "^5.3"
   }
 }

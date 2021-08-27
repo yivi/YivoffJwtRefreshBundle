@@ -1,62 +1,55 @@
-<?php declare(strict_types=1);
+<?php
 
-namespace Yivoff\Bundle\JwtRefresh\EventListener;
+declare(strict_types=1);
+
+namespace Yivoff\JwtRefreshBundle\EventListener;
 
 use DateInterval;
 use DateTimeImmutable;
 use Lexik\Bundle\JWTAuthenticationBundle\Event\AuthenticationSuccessEvent;
 use Symfony\Component\Security\Core\User\UserInterface;
-use Yivoff\Bundle\JwtRefresh\Contracts\EncoderInterface;
-use Yivoff\Bundle\JwtRefresh\Contracts\IdGeneratorInterface;
-use Yivoff\Bundle\JwtRefresh\Contracts\RefreshTokenProviderInterface;
-use Yivoff\Bundle\JwtRefresh\Model\RefreshToken;
+use Yivoff\JwtRefreshBundle\Contracts\HasherInterface;
+use Yivoff\JwtRefreshBundle\Contracts\RefreshTokenProviderInterface;
+use Yivoff\JwtRefreshBundle\Contracts\TokenIdGeneratorInterface;
+use Yivoff\JwtRefreshBundle\Model\RefreshToken;
+use function method_exists;
 
 final class AttachRefreshToken
 {
-
-    private RefreshTokenProviderInterface  $tokenProvider;
-    private EncoderInterface $encoder;
-    private IdGeneratorInterface $idGenerator;
-
-    private string $parameterName;
-    private int    $tokenShelfLife;
-
     public function __construct(
-        EncoderInterface $encoder,
-        IdGeneratorInterface $idGenerator,
-        string $parameterName,
-        int $tokenShelfLife,
-        RefreshTokenProviderInterface $tokenProvider
+        private HasherInterface $hasher,
+        private TokenIdGeneratorInterface $tokenIdGenerator,
+        private string $parameterName,
+        private int $tokenShelfLife,
+        private RefreshTokenProviderInterface $refreshTokenProvider
     ) {
-        $this->tokenProvider  = $tokenProvider;
-        $this->encoder        = $encoder;
-        $this->idGenerator    = $idGenerator;
-        $this->parameterName  = $parameterName;
-        $this->tokenShelfLife = $tokenShelfLife;
     }
 
-    public function __invoke(AuthenticationSuccessEvent $event)
+    public function __invoke(AuthenticationSuccessEvent $event): void
     {
         /** @var UserInterface $user */
         $data = $event->getData();
         $user = $event->getUser();
 
-        if (null !== $oldToken = $this->tokenProvider->getTokenForUsername($user->getUsername())) {
-            $this->tokenProvider->deleteTokenWithIdentifier($oldToken->getIdentifier());
+        if (method_exists($user, 'getUserIdentifier')) {
+            $userId = $user->getUserIdentifier();
+        } else {
+            /** @psalm-suppress DeprecatedMethod */
+            $userId = $user->getUsername();
         }
 
-        $identifier   = $this->idGenerator->generateIdentifier();
-        $raw_verifier = $this->idGenerator->generateVerifier();
+        $tokenId  = $this->tokenIdGenerator->generateIdentifier(20);
+        $verifier = $this->tokenIdGenerator->generateVerifier(32);
 
         $token = new RefreshToken(
-            $user->getUsername(),
-            $identifier,
-            $this->encoder->encode($raw_verifier),
-            (new DateTimeImmutable())->add(new DateInterval('PT' . $this->tokenShelfLife . 'S'))
+            $userId,
+            $tokenId,
+            $this->hasher->hash($verifier),
+            (new DateTimeImmutable())->add(new DateInterval('PT'.$this->tokenShelfLife.'S'))
         );
-        $this->tokenProvider->add($token);
+        $this->refreshTokenProvider->add($token);
 
-        $data[$this->parameterName] = $token->getIdentifier() . ':' . $raw_verifier;
+        $data[$this->parameterName] = $token->getIdentifier().':'.$verifier;
         $event->setData($data);
     }
 }

@@ -1,14 +1,21 @@
-# YivoffJwtRefreshBundle
+# yivoff/jwt-refresh-bundle
+
+* [Description](#description)
+* [Requirements](#requirements)
+* [Installation and setup](#installation-and-setup)
+  * [Installation](#installation)
+  * [Required Implementation](#required-implementation)
+  * [Security Integration](#security-integration) 
+  * [Bundle Configuration](#bundle-configuration)
+* [Usage](#usage)
+
+## Description 
 
 This package provides a way to generate "refresh tokens" that users can use to obtain a new authorization token (JWT)
 when the previous one expires. This is a companion for [lexik/LexikJWTAuthenticationBundle], and it is not usable on its
 own.
 
-Requires PHP 8+, Symfony 5.3+
-
-## Description 
-
-This package does not make any assumptions about the persistence layer for storing the refresh tokens. You can use any
+The package does not make any assumptions about the persistence layer for storing the refresh tokens. You can use any
 backend or library (Mysql, Mongo, Redis, flat-file, etc) as long as there is a service that implements a basic interface
 provided by the package: [`RefreshTokenProviderInterface`][1]
 
@@ -20,13 +27,17 @@ refresh-token is generated.
 You should setup the time-to-live for the refresh-tokens to be significantly higher than the time to live of the
 auth-tokens. 
 
-### Installation
+## Requirements
 
+Requires PHP 8+, Symfony 5.3+
+
+## Installation and Setup
+
+### Installation 
 ```bash
 $ composer require yivoff/jwt-refresh-bundle
 ```
-
-### Basic Requirements
+### Required Implementation
 Write an implementation for `RefreshTokenProviderInterface`. Use `yivoff_jwt_refresh.token_provider_service` to tell the
 bundle to use it to get/add/remove tokens.
 

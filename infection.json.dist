@@ -1,0 +1,16 @@
+{
+    "source": {
+        "directories": [
+            "Contracts",
+            "DependencyInjection",
+            "EventListener",
+            "Model",
+            "Resources",
+            "Security",
+            "Shared"
+        ]
+    },
+    "mutators": {
+        "@default": true
+    }
+}

@@ -1,24 +1,24 @@
-<?php declare(strict_types=1);
+<?php
 
-namespace Yivoff\Bundle\JwtRefresh\Test\resources;
+declare(strict_types=1);
 
+namespace Yivoff\JwtRefreshBundle\Test\Resource;
 
-use Yivoff\Bundle\JwtRefresh\Contracts\EncoderInterface;
-use Yivoff\Bundle\JwtRefresh\Contracts\IdGeneratorInterface;
-use Yivoff\Bundle\JwtRefresh\EventListener\AttachRefreshToken;
-use Yivoff\Bundle\JwtRefresh\Security\Authenticator;
+use Yivoff\JwtRefreshBundle\Contracts\HasherInterface;
+use Yivoff\JwtRefreshBundle\Contracts\TokenIdGeneratorInterface;
+use Yivoff\JwtRefreshBundle\EventListener\AttachRefreshToken;
+use Yivoff\JwtRefreshBundle\Security\Authenticator;
 
 class Autowired
 {
-
-    private EncoderInterface $encoder;
-    private IdGeneratorInterface $generator;
+    private HasherInterface $encoder;
+    private TokenIdGeneratorInterface $generator;
     private Authenticator $authenticator;
     private AttachRefreshToken $eventListener;
 
     public function __construct(
-        EncoderInterface $encoder,
-        IdGeneratorInterface $generator,
+        HasherInterface $encoder,
+        TokenIdGeneratorInterface $generator,
         Authenticator $authenticator,
         AttachRefreshToken $eventListener
     ) {
@@ -28,12 +28,12 @@ class Autowired
         $this->eventListener = $eventListener;
     }
 
-    public function getEncoder(): EncoderInterface
+    public function getEncoder(): HasherInterface
     {
         return $this->encoder;
     }
 
-    public function getGenerator(): IdGeneratorInterface
+    public function getGenerator(): TokenIdGeneratorInterface
     {
         return $this->generator;
     }
@@ -47,6 +47,4 @@ class Autowired
     {
         return $this->eventListener;
     }
-
-
 }

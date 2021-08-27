@@ -1,40 +1,84 @@
-<?php declare(strict_types=1);
+<?php
 
-namespace Yivoff\Bundle\JwtRefresh\DependencyInjection;
+declare(strict_types=1);
 
-use Symfony\Component\Config\FileLocator;
+namespace Yivoff\JwtRefreshBundle\DependencyInjection;
+
+use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\DependencyInjection\Loader\PhpFileLoader;
 use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
-use Yivoff\Bundle\JwtRefresh\Contracts\EncoderInterface;
-use Yivoff\Bundle\JwtRefresh\EventListener\AttachRefreshToken;
-use Yivoff\Bundle\JwtRefresh\Security\Authenticator;
+use Yivoff\JwtRefreshBundle\Console\PurgeExpiredTokensCommand;
+use Yivoff\JwtRefreshBundle\Contracts\HasherInterface;
+use Yivoff\JwtRefreshBundle\Contracts\TokenIdGeneratorInterface;
+use Yivoff\JwtRefreshBundle\EventListener\AttachRefreshToken;
+use Yivoff\JwtRefreshBundle\Security\Authenticator;
+use Yivoff\JwtRefreshBundle\Shared\Hasher;
+use Yivoff\JwtRefreshBundle\Shared\TokenIdGenerator;
+use Yivoff\JwtRefreshBundle\YivoffJwtRefreshBundle;
 
+/**
+ * @codeCoverageIgnore
+ */
 class YivoffJwtRefreshExtension extends Extension
 {
-
     public function load(array $configs, ContainerBuilder $container): void
     {
-        $configuration = new Configuration();
-        $config        = $this->processConfiguration($configuration, $configs);
-        $loader        = new PhpFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
+        $configuration = new BundleConfiguration();
 
-        $loader->load('services.php');
+        $config = $this->processConfiguration($configuration, $configs);
 
-        $providerReference = new Reference((string)$config['token_provider_service']);
+        foreach ($config as $key => $value) {
+            $container->setParameter(YivoffJwtRefreshBundle::BUNDLE_PREFIX . '.' .$key, $value);
+        }
 
-        $container->getDefinition(AttachRefreshToken::class)
-                  ->setArgument(2, $config['parameter_name'])
-                  ->setArgument(3, $config['token_ttl'])
-                  ->setArgument(4, $providerReference);
+        $providerReference = new Reference((string) $config['token_provider_service']);
 
-        $container->getDefinition(Authenticator::class)
-                  ->setArgument(2, $providerReference)
-                  ->setArgument(3, $config['parameter_name']);
+        $container->register(AttachRefreshToken::class)
+            ->setArgument(0, new Reference(HasherInterface::class))
+            ->setArgument(1, new Reference(TokenIdGeneratorInterface::class))
+            ->setArgument(2, $config['parameter_name'])
+            ->setArgument(3, $config['token_ttl'])
+            ->setArgument(4, $providerReference)
+            ->addTag('kernel.event_listener', ['event' => 'lexik_jwt_authentication.on_authentication_success'])
+        ;
 
-        $container->getDefinition(EncoderInterface::class)
-                  ->setArgument(0, '%kernel.secret%');
+        $container->setAlias(YivoffJwtRefreshBundle::BUNDLE_PREFIX.'.attach_refresh_token_listener', AttachRefreshToken::class)
+            ->setPublic(true)
+        ;
+
+        $container->register(Authenticator::class)
+            ->setArgument(0, new Reference(HasherInterface::class))
+            ->setArgument(1, new Reference('lexik_jwt_authentication.handler.authentication_success'))
+            ->setArgument(2, $providerReference)
+            ->setArgument(3, $config['parameter_name'])
+        ;
+
+        $container->setAlias(YivoffJwtRefreshBundle::BUNDLE_PREFIX.'.authenticator', Authenticator::class)
+            ->setPublic(true)
+        ;
+
+        $container->register(HasherInterface::class)
+            ->setArgument(0, '%kernel.secret%')
+            ->setClass(Hasher::class)
+        ;
+
+        $container->setAlias(YivoffJwtRefreshBundle::BUNDLE_PREFIX.'.hasher', HasherInterface::class)
+            ->setPublic(true)
+        ;
+
+        $container->register(TokenIdGeneratorInterface::class)
+            ->setClass(TokenIdGenerator::class)
+        ;
+
+        $container->setAlias(YivoffJwtRefreshBundle::BUNDLE_PREFIX.'.token_id_generator', TokenIdGeneratorInterface::class);
+
+        if (\class_exists(Application::class)) {
+            $container->register(PurgeExpiredTokensCommand::class)
+                ->setArgument(0, $providerReference)
+                ->addTag('console.command', ['command'=>PurgeExpiredTokensCommand::getDefaultName()])
+            ;
+        }
     }
 
     public function getNamespace(): string
@@ -44,10 +88,6 @@ class YivoffJwtRefreshExtension extends Extension
 
     public function getXsdValidationBasePath(): string
     {
-        return __DIR__ . '/../Resources/config/schema';
+        return __DIR__.'/../Resources/config/schema';
     }
-
-
-
-
 }

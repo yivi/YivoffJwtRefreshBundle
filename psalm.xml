@@ -1,24 +1,18 @@
 <?xml version="1.0"?>
 <psalm
-    totallyTyped="false"
-    errorLevel="1"
     resolveFromConfigFile="true"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns="https://getpsalm.org/schema/config"
-    xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd"
+    xsi:schemaLocation="https://getpsalm.org/schema/config vendor-bin/static/vendor/vimeo/psalm/config.xsd"
 >
     <projectFiles>
-        <directory name="Contracts" />
-        <directory name="DependencyInjection" />
-        <directory name="EventListener" />
-        <directory name="Model" />
-        <directory name="Resources" />
-        <directory name="Security" />
-        <directory name="Service" />
+        <directory name="./"/>
         <file name="YivoffJwtRefreshBundle.php" />
         <ignoreFiles>
-            <directory name="vendor" />
-            <file name="DependencyInjection/Configuration.php"/>
+            <directory name="vendor"/>
+            <directory name="vendor-bin"/>
+            <directory name="var"/>
+            <file name="DependencyInjection/BundleConfiguration.php"/>
         </ignoreFiles>
     </projectFiles>
 </psalm>

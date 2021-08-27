@@ -1,24 +1,16 @@
-<?php declare(strict_types=1);
+<?php
 
-namespace Yivoff\Bundle\JwtRefresh\Model;
+declare(strict_types=1);
+
+namespace Yivoff\JwtRefreshBundle\Model;
 
 use DateTimeImmutable;
-use Yivoff\Bundle\JwtRefresh\Contracts\RefreshTokenInterface;
+use Yivoff\JwtRefreshBundle\Contracts\RefreshTokenInterface;
 
 class RefreshToken implements RefreshTokenInterface
 {
-
-    private string            $username;
-    private string            $identifier;
-    private string            $verifier;
-    private DateTimeImmutable $validUntil;
-
-    public function __construct(string $username, string $identifier, string $verifier, DateTimeImmutable $validUntil)
+    public function __construct(private string $username, private string $identifier, private string $verifier, private DateTimeImmutable $validUntil)
     {
-        $this->username   = $username;
-        $this->identifier = $identifier;
-        $this->verifier   = $verifier;
-        $this->validUntil = $validUntil;
     }
 
     public function getUsername(): string
@@ -40,6 +32,4 @@ class RefreshToken implements RefreshTokenInterface
     {
         return $this->validUntil->getTimestamp();
     }
-
-
 }
