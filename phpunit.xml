@@ -13,18 +13,14 @@
          verbose="true">
     <testsuites>
         <testsuite name="Bundle Tests!!!">
-            <directory>Test</directory>
+            <directory>tests</directory>
         </testsuite>
     </testsuites>
 
     <coverage cacheDirectory=".phpunit.cache/code-coverage"
               processUncoveredFiles="true">
         <include>
-            <directory suffix=".php">DependencyInjection</directory>
-            <directory suffix=".php">EventListener</directory>
-            <directory suffix=".php">Security</directory>
-            <directory suffix=".php">Shared</directory>
-            <directory suffix=".php">Console</directory>
+            <directory suffix=".php">src</directory>
         </include>
     </coverage>
 </phpunit>

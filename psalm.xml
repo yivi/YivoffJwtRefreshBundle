@@ -6,13 +6,9 @@
     xsi:schemaLocation="https://getpsalm.org/schema/config vendor-bin/static/vendor/vimeo/psalm/config.xsd"
 >
     <projectFiles>
-        <directory name="./"/>
-        <file name="YivoffJwtRefreshBundle.php" />
+        <directory name="src"/>
         <ignoreFiles>
-            <directory name="vendor"/>
-            <directory name="vendor-bin"/>
-            <directory name="var"/>
-            <file name="DependencyInjection/BundleConfiguration.php"/>
+            <file name="src/DependencyInjection/BundleConfiguration.php"/>
         </ignoreFiles>
     </projectFiles>
 </psalm>

@@ -11,21 +11,13 @@ use Yivoff\JwtRefreshBundle\Security\Authenticator;
 
 class Autowired
 {
-    private HasherInterface $encoder;
-    private TokenIdGeneratorInterface $generator;
-    private Authenticator $authenticator;
-    private AttachRefreshToken $eventListener;
 
     public function __construct(
-        HasherInterface $encoder,
-        TokenIdGeneratorInterface $generator,
-        Authenticator $authenticator,
-        AttachRefreshToken $eventListener
+        private HasherInterface $encoder,
+        private TokenIdGeneratorInterface $generator,
+        private Authenticator $authenticator,
+        private AttachRefreshToken $eventListener
     ) {
-        $this->encoder       = $encoder;
-        $this->generator     = $generator;
-        $this->authenticator = $authenticator;
-        $this->eventListener = $eventListener;
     }
 
     public function getEncoder(): HasherInterface

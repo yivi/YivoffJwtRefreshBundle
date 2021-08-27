@@ -29,7 +29,7 @@ class BundleInitializationTest extends KernelTestCase
         ]);
         $container = self::getContainer();
 
-        // Test if your services exists
+        // tests if your services exists
         $this->assertTrue($container->has(AttachRefreshToken::class));
         $this->assertTrue($container->has(YivoffJwtRefreshBundle::BUNDLE_PREFIX.'.attach_refresh_token_listener'));
 

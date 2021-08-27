@@ -4,12 +4,12 @@
   "type": "symfony-bundle",
   "autoload": {
     "psr-4": {
-      "Yivoff\\JwtRefreshBundle\\": ""
+      "Yivoff\\JwtRefreshBundle\\": "src"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "Yivoff\\JwtRefreshBundle\\Test\\": "Test"
+      "Yivoff\\JwtRefreshBundle\\Test\\": "tests"
     }
   },
   "require": {
