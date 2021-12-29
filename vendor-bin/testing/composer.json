@@ -2,5 +2,10 @@
     "require": {
         "phpunit/phpunit": "^9.5",
         "infection/infection": "^0.24.0"
+    },
+    "config": {
+        "allow-plugins": {
+            "infection/extension-installer": true
+        }
     }
 }

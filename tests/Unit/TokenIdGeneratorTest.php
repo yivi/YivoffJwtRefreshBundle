@@ -6,6 +6,7 @@ namespace Yivoff\JwtRefreshBundle\Test\Unit;
 
 use PHPUnit\Framework\TestCase;
 use Yivoff\JwtRefreshBundle\Shared\TokenIdGenerator;
+use function strlen;
 
 /**
  * @covers \Yivoff\JwtRefreshBundle\Shared\TokenIdGenerator

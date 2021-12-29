@@ -9,10 +9,15 @@ use Lexik\Bundle\JWTAuthenticationBundle\Security\Http\Authentication\Authentica
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Http\Authenticator\Passport\Badge\UserBadge;
 use Symfony\Component\Security\Http\Authenticator\Passport\SelfValidatingPassport;
 use Yivoff\JwtRefreshBundle\Contracts\RefreshTokenProviderInterface;
+use Yivoff\JwtRefreshBundle\Event\JwtRefreshTokenFailed;
+use Yivoff\JwtRefreshBundle\Exception\FailType;
+use Yivoff\JwtRefreshBundle\Exception\PayloadInvalidException;
+use Yivoff\JwtRefreshBundle\Exception\TokenExpiredException;
+use Yivoff\JwtRefreshBundle\Exception\TokenInvalidException;
+use Yivoff\JwtRefreshBundle\Exception\TokenNotFoundException;
 use Yivoff\JwtRefreshBundle\Model\RefreshToken;
 use Yivoff\JwtRefreshBundle\Security\Authenticator;
 use Yivoff\JwtRefreshBundle\Test\Resource\InMemoryRefreshTokenProvider;
@@ -28,10 +33,11 @@ class AuthenticatorTest extends TestCase
 
     public function testSuccessful(): void
     {
-        $handler  = $this->createMock(AuthenticationSuccessHandler::class);
-        $provider = $this->createTokenProvider();
+        $handler         = $this->createMock(AuthenticationSuccessHandler::class);
+        $eventDispatcher = new EventDispatcherSpy();
+        $provider        = $this->createTokenProvider();
 
-        $auth    = new Authenticator($this->createHasher(), $handler, $provider, 'test-param');
+        $auth    = new Authenticator($this->createHasher(), $handler, $provider, $eventDispatcher, 'test-param');
         $request = new Request();
         $request->request->set('test-param', str_repeat('a', 20).':'.str_repeat('b', 20));
 
@@ -47,66 +53,83 @@ class AuthenticatorTest extends TestCase
 
     public function testInvalidToken(): void
     {
-        $handler  = $this->createMock(AuthenticationSuccessHandler::class);
-        $provider = $this->createTokenProvider();
+        $handler            = $this->createMock(AuthenticationSuccessHandler::class);
+        $eventDispatcherSpy = new EventDispatcherSpy();
+        $provider           = $this->createTokenProvider();
 
-        $auth    = new Authenticator($this->createHasher(), $handler, $provider, 'test-param');
+        $auth    = new Authenticator($this->createHasher(), $handler, $provider, $eventDispatcherSpy, 'test-param');
         $request = new Request();
         $request->request->set('test-param', str_repeat('a', 20).'-'.str_repeat('b', 20));
 
-        $this->expectException(AuthenticationException::class);
-        $this->expectExceptionMessage('Invalid Token Format');
-        $passport = $auth->authenticate($request);
+        $this->expectException(PayloadInvalidException::class);
+        $auth->authenticate($request);
+
+        $event = $eventDispatcherSpy->getEventByName(JwtRefreshTokenFailed::class);
+        $this->assertInstanceOf(JwtRefreshTokenFailed::class, $event);
+        $this->assertEquals(FailType::INVALID, $event->failType);
     }
 
-    public function testMissingToken(): void
+    public function testTokenNotFound(): void
     {
-        $handler  = $this->createMock(AuthenticationSuccessHandler::class);
-        $provider = $this->createTokenProvider();
+        $handler            = $this->createMock(AuthenticationSuccessHandler::class);
+        $eventDispatcherSpy = new EventDispatcherSpy();
+        $provider           = $this->createTokenProvider();
 
-        $auth    = new Authenticator($this->createHasher(), $handler, $provider, 'test-param');
+        $auth    = new Authenticator($this->createHasher(), $handler, $provider, $eventDispatcherSpy, 'test-param');
         $request = new Request();
         $request->request->set('test-param', str_repeat('c', 20).':'.str_repeat('b', 20));
 
-        $this->expectException(AuthenticationException::class);
-        $this->expectExceptionMessage('Token Does Not Exist');
-        $passport = $auth->authenticate($request);
+        $this->expectException(TokenNotFoundException::class);
+        $auth->authenticate($request);
+
+        $event = $eventDispatcherSpy->getEventByName(JwtRefreshTokenFailed::class);
+        $this->assertInstanceOf(JwtRefreshTokenFailed::class, $event);
+        $this->assertEquals(FailType::NOT_FOUND, $event->failType);
     }
 
     public function testExpiredToken(): void
     {
-        $handler  = $this->createMock(AuthenticationSuccessHandler::class);
-        $provider = $this->createTokenProvider();
+        $handler            = $this->createMock(AuthenticationSuccessHandler::class);
+        $eventDispatcherSpy = new EventDispatcherSpy();
+        $provider           = $this->createTokenProvider();
 
-        $auth    = new Authenticator($this->createHasher(), $handler, $provider, 'test-param');
+        $auth    = new Authenticator($this->createHasher(), $handler, $provider, $eventDispatcherSpy, 'test-param');
         $request = new Request();
         $request->request->set('test-param', str_repeat('x', 20).':'.str_repeat('b', 20));
 
-        $this->expectException(AuthenticationException::class);
-        $this->expectExceptionMessage('Token expired');
-        $passport = $auth->authenticate($request);
+        $this->expectException(TokenExpiredException::class);
+        $auth->authenticate($request);
+
+        $event = $eventDispatcherSpy->getEventByName(JwtRefreshTokenFailed::class);
+        $this->assertInstanceOf(JwtRefreshTokenFailed::class, $event);
+        $this->assertEquals(FailType::EXPIRED, $event->failType);
     }
 
     public function testHashFail(): void
     {
-        $handler  = $this->createMock(AuthenticationSuccessHandler::class);
-        $provider = $this->createTokenProvider();
+        $handler            = $this->createMock(AuthenticationSuccessHandler::class);
+        $eventDispatcherSpy = new EventDispatcherSpy();
+        $provider           = $this->createTokenProvider();
 
-        $auth    = new Authenticator($this->createHasher(false), $handler, $provider, 'test-param');
+        $auth    = new Authenticator($this->createHasher(false), $handler, $provider, $eventDispatcherSpy, 'test-param');
         $request = new Request();
         $request->request->set('test-param', str_repeat('a', 20).':'.str_repeat('b', 20));
 
-        $this->expectException(AuthenticationException::class);
-        $this->expectExceptionMessage('Token verification failed');
-        $passport = $auth->authenticate($request);
+        $this->expectException(TokenInvalidException::class);
+        $auth->authenticate($request);
+
+        $event = $eventDispatcherSpy->getEventByName(JwtRefreshTokenFailed::class);
+        $this->assertInstanceOf(JwtRefreshTokenFailed::class, $event);
+        $this->assertEquals(FailType::INVALID, $event->failType);
     }
 
     public function testSupports(): void
     {
-        $handler  = $this->createMock(AuthenticationSuccessHandler::class);
-        $provider = $this->createTokenProvider();
+        $handler         = $this->createMock(AuthenticationSuccessHandler::class);
+        $eventDispatcher = new EventDispatcherSpy();
+        $provider        = $this->createTokenProvider();
 
-        $auth    = new Authenticator($this->createHasher(false), $handler, $provider, 'test-param');
+        $auth    = new Authenticator($this->createHasher(false), $handler, $provider, $eventDispatcher, 'test-param');
         $request = new Request();
         $request->request->set('test-param', str_repeat('a', 20).':'.str_repeat('b', 20));
 
@@ -115,17 +138,18 @@ class AuthenticatorTest extends TestCase
 
     public function testAuthFailure(): void
     {
-        $handler  = $this->createMock(AuthenticationSuccessHandler::class);
-        $provider = $this->createTokenProvider();
+        $handler         = $this->createMock(AuthenticationSuccessHandler::class);
+        $eventDispatcher = new EventDispatcherSpy();
+        $provider        = $this->createTokenProvider();
 
-        $auth      = new Authenticator($this->createHasher(false), $handler, $provider, 'test-param');
+        $auth      = new Authenticator($this->createHasher(false), $handler, $provider, $eventDispatcher, 'test-param');
         $request   = new Request();
-        $exception = new AuthenticationException('Bad Auth');
+        $exception = new TokenInvalidException('abc', 'def');
 
         $response = $auth->onAuthenticationFailure($request, $exception);
 
         $this->assertInstanceOf(JsonResponse::class, $response);
-        $this->assertJson('{"error": "Bad Auth"}', $response->getContent());
+        $this->assertJson('{"error": "Invalid Token. Token Id: abc. User Id: def"}', $response->getContent());
     }
 
     private function createTokenProvider(): RefreshTokenProviderInterface

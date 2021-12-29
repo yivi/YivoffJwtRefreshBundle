@@ -12,7 +12,6 @@ use Yivoff\JwtRefreshBundle\Contracts\HasherInterface;
 use Yivoff\JwtRefreshBundle\Contracts\RefreshTokenProviderInterface;
 use Yivoff\JwtRefreshBundle\Contracts\TokenIdGeneratorInterface;
 use Yivoff\JwtRefreshBundle\Model\RefreshToken;
-use function method_exists;
 
 final class AttachRefreshToken
 {
@@ -31,12 +30,7 @@ final class AttachRefreshToken
         $data = $event->getData();
         $user = $event->getUser();
 
-        if (method_exists($user, 'getUserIdentifier')) {
-            $userId = $user->getUserIdentifier();
-        } else {
-            /** @psalm-suppress DeprecatedMethod */
-            $userId = $user->getUsername();
-        }
+        $userId = $user->getUserIdentifier();
 
         $tokenId  = $this->tokenIdGenerator->generateIdentifier(20);
         $verifier = $this->tokenIdGenerator->generateVerifier(32);

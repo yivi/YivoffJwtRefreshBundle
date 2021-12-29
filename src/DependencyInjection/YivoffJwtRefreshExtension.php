@@ -7,6 +7,7 @@ namespace Yivoff\JwtRefreshBundle\DependencyInjection;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Reference;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Yivoff\JwtRefreshBundle\Console\PurgeExpiredTokensCommand;
 use Yivoff\JwtRefreshBundle\Contracts\HasherInterface;
@@ -29,6 +30,7 @@ class YivoffJwtRefreshExtension extends Extension
 
         $config = $this->processConfiguration($configuration, $configs);
 
+        /** @var string $value */
         foreach ($config as $key => $value) {
             $container->setParameter(YivoffJwtRefreshBundle::BUNDLE_PREFIX.'.'.$key, $value);
         }
@@ -52,7 +54,8 @@ class YivoffJwtRefreshExtension extends Extension
             ->setArgument(0, new Reference(HasherInterface::class))
             ->setArgument(1, new Reference('lexik_jwt_authentication.handler.authentication_success'))
             ->setArgument(2, $providerReference)
-            ->setArgument(3, $config['parameter_name'])
+            ->setArgument(3, new Reference(EventDispatcherInterface::class))
+            ->setArgument(4, $config['parameter_name'])
         ;
 
         $container->setAlias(YivoffJwtRefreshBundle::BUNDLE_PREFIX.'.authenticator', Authenticator::class)

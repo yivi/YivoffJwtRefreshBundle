@@ -10,11 +10,19 @@ use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Http\Authenticator\AbstractAuthenticator;
 use Symfony\Component\Security\Http\Authenticator\Passport\Badge\UserBadge;
-use Symfony\Component\Security\Http\Authenticator\Passport\PassportInterface;
+use Symfony\Component\Security\Http\Authenticator\Passport\Passport;
 use Symfony\Component\Security\Http\Authenticator\Passport\SelfValidatingPassport;
+use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 use Yivoff\JwtRefreshBundle\Contracts\HasherInterface;
 use Yivoff\JwtRefreshBundle\Contracts\RefreshTokenInterface;
 use Yivoff\JwtRefreshBundle\Contracts\RefreshTokenProviderInterface;
+use Yivoff\JwtRefreshBundle\Event\JwtRefreshTokenFailed;
+use Yivoff\JwtRefreshBundle\Event\JwtRefreshTokenSuccess;
+use Yivoff\JwtRefreshBundle\Exception\JwtRefreshException;
+use Yivoff\JwtRefreshBundle\Exception\PayloadInvalidException;
+use Yivoff\JwtRefreshBundle\Exception\TokenExpiredException;
+use Yivoff\JwtRefreshBundle\Exception\TokenInvalidException;
+use Yivoff\JwtRefreshBundle\Exception\TokenNotFoundException;
 use function explode;
 use function str_contains;
 use function time;
@@ -25,16 +33,17 @@ final class Authenticator extends AbstractAuthenticator
         private HasherInterface $encoder,
         private AuthenticationSuccessHandler $successHandler,
         private RefreshTokenProviderInterface $tokenProvider,
+        private EventDispatcherInterface $eventDispatcher,
         private string $parameterName
     ) {
     }
 
-    public function authenticate(HttpFoundation\Request $request): PassportInterface
+    public function authenticate(HttpFoundation\Request $request): Passport
     {
         $credentials = (string) $request->request->get($this->parameterName);
 
         if (!str_contains($credentials, ':')) {
-            throw new AuthenticationException('Invalid Token Format');
+            throw new PayloadInvalidException(null, null);
         }
 
         [$tokenId, $userProvidedVerification] = explode(':', $credentials);
@@ -42,16 +51,18 @@ final class Authenticator extends AbstractAuthenticator
         $token = $this->tokenProvider->getTokenWithIdentifier($tokenId);
 
         if (!$token instanceof RefreshTokenInterface) {
-            throw new AuthenticationException('Token Does Not Exist');
+            throw new TokenNotFoundException($tokenId, null);
         }
 
         if ($token->getValidUntil() <= time()) {
-            throw new AuthenticationException('Token expired');
+            throw new TokenExpiredException($tokenId, $token->getUsername());
         }
 
         if (!$this->encoder->verify($userProvidedVerification, $token->getVerifier())) {
-            throw new AuthenticationException('Token verification failed');
+            throw new TokenInvalidException($tokenId, $token->getUsername());
         }
+
+        $this->eventDispatcher->dispatch(new JwtRefreshTokenSuccess($tokenId, $token->getUsername()));
 
         return new SelfValidatingPassport(new UserBadge($token->getUsername()));
     }
@@ -63,6 +74,9 @@ final class Authenticator extends AbstractAuthenticator
 
     public function onAuthenticationFailure(HttpFoundation\Request $request, AuthenticationException $exception): HttpFoundation\Response
     {
+        /** @var JwtRefreshException $exception */
+        $this->eventDispatcher->dispatch(new JwtRefreshTokenFailed($exception->failType, $exception->tokenId, $exception->userIdentifier));
+
         return new HttpFoundation\JsonResponse(['error' => $exception->getMessage()], HttpFoundation\Response::HTTP_UNAUTHORIZED);
     }
 

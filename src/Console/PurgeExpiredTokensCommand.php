@@ -17,7 +17,7 @@ class PurgeExpiredTokensCommand extends Command
 
     public function __construct(private RefreshTokenProviderInterface $provider)
     {
-        parent::__construct(self::$defaultName);
+        parent::__construct((string) self::$defaultName);
     }
 
     protected function configure(): void

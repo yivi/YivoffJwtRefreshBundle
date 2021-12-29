@@ -1,7 +1,12 @@
 {
     "require": {
-        "vimeo/psalm": "^4.9",
+        "vimeo/psalm": "^4.16.1",
         "php-standard-library/psalm-plugin": "^1.1",
         "psalm/plugin-symfony": "^2.5"
+    },
+    "config": {
+        "allow-plugins": {
+            "composer/package-versions-deprecated": true
+        }
     }
 }

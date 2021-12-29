@@ -22,6 +22,7 @@ $config
             ],
             'global_namespace_import' => ['import_classes' => true, 'import_constants' => true, 'import_functions' => true],
             'ordered_imports'         => ['imports_order' => ['class', 'function', 'const'], 'sort_algorithm' => 'alpha'],
+            'phpdoc_to_comment'       => ['ignored_tags' => ['var']],
         ]
     );
 

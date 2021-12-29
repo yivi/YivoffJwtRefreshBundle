@@ -32,15 +32,19 @@ class BundleInitializationTest extends KernelTestCase
         // tests if your services exists
         $this->assertTrue($container->has(AttachRefreshToken::class));
         $this->assertTrue($container->has(YivoffJwtRefreshBundle::BUNDLE_PREFIX.'.attach_refresh_token_listener'));
+        $this->assertInstanceOf(AttachRefreshToken::class, $container->get(YivoffJwtRefreshBundle::BUNDLE_PREFIX.'.attach_refresh_token_listener'));
 
         $this->assertTrue($container->has(Authenticator::class));
         $this->assertTrue($container->has(YivoffJwtRefreshBundle::BUNDLE_PREFIX.'.authenticator'));
+        $this->assertInstanceOf(Authenticator::class, $container->get(YivoffJwtRefreshBundle::BUNDLE_PREFIX.'.authenticator'));
 
         $this->assertTrue($container->has(HasherInterface::class));
         $this->assertTrue($container->has(YivoffJwtRefreshBundle::BUNDLE_PREFIX.'.hasher'));
+        $this->assertInstanceOf(HasherInterface::class, $container->get(YivoffJwtRefreshBundle::BUNDLE_PREFIX.'.hasher'));
 
         $this->assertTrue($container->has(TokenIdGeneratorInterface::class));
         $this->assertTrue($container->has(YivoffJwtRefreshBundle::BUNDLE_PREFIX.'.token_id_generator'));
+        $this->assertInstanceOf(TokenIdGeneratorInterface::class, $container->get(YivoffJwtRefreshBundle::BUNDLE_PREFIX.'.token_id_generator'));
     }
 
     protected static function createKernel(array $options = []): TestKernel

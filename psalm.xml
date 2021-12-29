@@ -1,14 +1,18 @@
 <?xml version="1.0"?>
 <psalm
-    resolveFromConfigFile="true"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns="https://getpsalm.org/schema/config"
-    xsi:schemaLocation="https://getpsalm.org/schema/config vendor-bin/static/vendor/vimeo/psalm/config.xsd"
+        memoizeMethodCallResults="true"
+        totallyTyped="true"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="https://getpsalm.org/schema/config"
+        xsi:schemaLocation="https://getpsalm.org/schema/config vendor-bin/static/vendor/vimeo/psalm/config.xsd"
+        errorLevel="1"
 >
     <projectFiles>
         <directory name="src"/>
         <ignoreFiles>
             <file name="src/DependencyInjection/BundleConfiguration.php"/>
+            <file name="vendor/bin/psalm"/>
+            <directory name="vendor"/>
         </ignoreFiles>
     </projectFiles>
 </psalm>
