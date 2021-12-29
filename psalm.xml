@@ -12,7 +12,6 @@
         <ignoreFiles>
             <file name="src/DependencyInjection/BundleConfiguration.php"/>
             <file name="vendor/bin/psalm"/>
-            <directory name="vendor"/>
         </ignoreFiles>
     </projectFiles>
 </psalm>

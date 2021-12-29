@@ -43,6 +43,7 @@
     ],
     "psalm": "vendor-bin/static/vendor/vimeo/psalm/psalm",
     "test": "vendor-bin/testing/vendor/phpunit/phpunit/phpunit",
+    "coverage": "vendor-bin/testing/vendor/phpunit/phpunit",
     "test-pretty": "vendor-bin/testing/vendor/phpunit/phpunit/phpunit --testdox"
   }
 }

@@ -5,3 +5,4 @@
 /vendor-bin/**/vendor
 /vendor-bin/**/composer.lock binary
 .idea/
+coverage.html
