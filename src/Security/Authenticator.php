@@ -17,7 +17,7 @@ use Yivoff\JwtRefreshBundle\Contracts\HasherInterface;
 use Yivoff\JwtRefreshBundle\Contracts\RefreshTokenInterface;
 use Yivoff\JwtRefreshBundle\Contracts\RefreshTokenProviderInterface;
 use Yivoff\JwtRefreshBundle\Event\JwtRefreshTokenFailed;
-use Yivoff\JwtRefreshBundle\Event\JwtRefreshTokenSuccess;
+use Yivoff\JwtRefreshBundle\Event\JwtRefreshTokenSucceeded;
 use Yivoff\JwtRefreshBundle\Exception\JwtRefreshException;
 use Yivoff\JwtRefreshBundle\Exception\PayloadInvalidException;
 use Yivoff\JwtRefreshBundle\Exception\TokenExpiredException;
@@ -62,7 +62,7 @@ final class Authenticator extends AbstractAuthenticator
             throw new TokenInvalidException($tokenId, $token->getUsername());
         }
 
-        $this->eventDispatcher->dispatch(new JwtRefreshTokenSuccess($tokenId, $token->getUsername()));
+        $this->eventDispatcher->dispatch(new JwtRefreshTokenSucceeded($tokenId, $token->getUsername()));
 
         return new SelfValidatingPassport(new UserBadge($token->getUsername()));
     }

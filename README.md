@@ -5,7 +5,7 @@
 [![Latest Unstable Version](http://poser.pugx.org/yivoff/jwt-refresh-bundle/v/unstable)](https://packagist.org/packages/yivoff/jwt-refresh-bundle)
 [![License](http://poser.pugx.org/yivoff/jwt-refresh-bundle/license)](https://packagist.org/packages/yivoff/jwt-refresh-bundle)
 ![Tests](https://github.com/yivi/YivoffJwtRefreshBundle/actions/workflows/bundle_tests.yaml/badge.svg)
-[![codecov](https://codecov.io/gh/yivi/YivoffJwtRefreshBundle/branch/master/graph/badge.svg?token=4JDTQ4IDN7)](https://codecov.io/gh/yivi/YivoffJwtRefreshBundle)
+[![codecov](https://app.codecov.io/gh/yivi/YivoffJwtRefreshBundle/branch/master/graph/badge.svg?token=4JDTQ4IDN7)](https://codecov.io/gh/yivi/YivoffJwtRefreshBundle)
 
 * [Description](#description)
 * [Requirements](#requirements)
@@ -156,7 +156,7 @@ Content-Type: application/json
 ```
 
 It is not necessary to register a new route for the "refresh" path. To get a new authentication JWT, you simply call the
-same login path with `POST` HTTP parameter with the same name and value that we received previously:
+same login path with regular `POST` call with a HTTP parameter with the same name and value that we received previously:
 
 ```http request
 POST http://localhost:7099/login_check
@@ -164,7 +164,35 @@ Content-Type: application/x-www-form-urlencoded
 
 refresh_token=bd8b1a304dc39dda3d10a38788b2ebf7:f52ac998773d552a0c639c2f85ffa5f2e18df2f1a3f528c9ddc3fcd8c6ba2f31
 ```
+### Events
 
+If you want your application to react to successful or failed refresh attempts (logging, etc.), the library emits events
+that you can listen to.
+
+#### Failure
+
+When the refresh attempt fails for whatever reason, the library emits a `Yivoff\JwtRefreshBundle\Event\JwtRefreshTokenFailed`
+event. 
+
+The event has three public properties:
+
+* `?string tokenId`: The identifier for the refresh token. This will be null if the payload was invalid, and no
+   identifier could be retrieved from the request.
+* `?string userIdentifier`: The identifier for the user that ows the token. this will be null if the payload was
+   invalid, or if we couldn't find a token for the request `tokenId`.
+* `FailType $failType`: This is an enum that describes the failure type encountered:
+  * `FailType::PAYLOAD`: Payload could not be parsed.
+  * `FailType::NOT_FOUND`: Token by this id could not be found.
+  * `FailType::INVALID`:  Token was found, but verifier was invalid.
+  * `FailType::EXPIRED`: Token was found, but it was already expired.
+
+#### Success
+
+On success, a `Yivoff\JwtRefreshBundle\Event\JwtRefreshTokenSucceeded` event is emitted. This simply includes the
+properties:
+
+* `string tokenId`: the identifier for the refresh token
+* `string userIdentifier`: the identifier for the user that owns the token
 
 [1]: https://github.com/yivi/YivoffJwtRefreshBundle/blob/master/Contracts/RefreshTokenProviderInterface.php
 [2]: https://github.com/yivi/YivoffJwtRefreshBundle/blob/master/Contracts/RefreshTokenInterface.php
