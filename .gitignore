@@ -1,8 +1,32 @@
+# lockfile should not be commited on libraries.
 /composer.lock
+
+# regular ignored things
 /vendor
 /var
 *.cache
+
+# ignore dev tools vendors and treat their lockfiles as binaries
 /vendor-bin/**/vendor
 /vendor-bin/**/composer.lock binary
-.idea/
+
+# ignore the locally generated coverage directory.
 coverage.html
+
+# Stupid Mac.
+.DS_Store
+
+# JetBrains IDE Files
+# User-specific stuff
+.idea/**/workspace.xml
+.idea/**/tasks.xml
+.idea/**/usage.statistics.xml
+.idea/**/dictionaries
+.idea/**/shelf
+
+# Generated files
+.idea/**/contentModel.xml
+
+# Editor-based Rest Client
+.idea/httpRequests
+
