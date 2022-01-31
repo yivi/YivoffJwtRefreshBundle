@@ -33,6 +33,7 @@ class PurgeCommandTest extends KernelTestCase
         ]);
 
         $container = self::getContainer();
+
         /** @var \Yivoff\JwtRefreshBundle\Test\Resource\InMemoryRefreshTokenProvider $provider */
         $provider = $container->get($container->getParameter('yivoff_jwt_refresh.token_provider_service'));
 
@@ -62,6 +63,7 @@ class PurgeCommandTest extends KernelTestCase
         ]);
 
         $container = self::getContainer();
+
         /** @var \Yivoff\JwtRefreshBundle\Test\Resource\InMemoryRefreshTokenProvider $provider */
         $provider = $container->get($container->getParameter('yivoff_jwt_refresh.token_provider_service'));
 
