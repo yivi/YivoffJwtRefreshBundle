@@ -24,9 +24,5 @@ coverage.html
 .idea/**/dictionaries
 .idea/**/shelf
 
-# Generated files
-.idea/**/contentModel.xml
-
-# Editor-based Rest Client
 .idea/httpRequests
 

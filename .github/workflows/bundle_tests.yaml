@@ -14,10 +14,17 @@ jobs:
       matrix:
         operating-system: [ ubuntu-latest ]
         php: [ '8.1' ]
-        symfony: [ '6.0.0' ]
+        symfony: [ '5.3.0', '5.4.0', '6.0.0' ]
 
     steps:
       - uses: actions/checkout@master
+
+      - name: "Cache Composer packages"
+        uses: "actions/cache@v2"
+        with:
+          path: "~/.composer/cache"
+          key: "php-${{ matrix.php }}-symfony-${{ matrix.symfony }}-composer-${{ hashFiles('composer.json') }}"
+          restore-keys: "php-"
 
       - name: Setup PHP ${{ matrix.php }}
         uses: shivammathur/setup-php@v2
@@ -26,9 +33,9 @@ jobs:
           tools: flex
 
       - name: Download dependencies
+        run: "composer update --prefer-dist"
         env:
           SYMFONY_REQUIRE: ${{ matrix.symfony }}
-        uses: ramsey/composer-install@v2
 
       - name: install test tools
         run: composer bin all install
