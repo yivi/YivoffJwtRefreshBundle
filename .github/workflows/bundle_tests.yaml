@@ -33,7 +33,7 @@ jobs:
           tools: flex
 
       - name: Download dependencies
-        run: "composer update --prefer-dist"
+        run: "composer install --prefer-dist"
         env:
           SYMFONY_REQUIRE: ${{ matrix.symfony }}
 
