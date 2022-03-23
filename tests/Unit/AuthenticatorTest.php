@@ -47,6 +47,7 @@ class AuthenticatorTest extends TestCase
 
         $badge = $passport->getBadge(UserBadge::class);
 
+        $this->assertEquals(true, $passport->getAttribute('yivoff_refresh_auth', false));
         $this->assertInstanceOf(UserBadge::class, $badge);
         $this->assertEquals('yivoff', $badge->getUserIdentifier());
     }

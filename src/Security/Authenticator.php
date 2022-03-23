@@ -64,7 +64,10 @@ final class Authenticator extends AbstractAuthenticator
 
         $this->eventDispatcher->dispatch(new JwtRefreshTokenSucceeded($tokenId, $token->getUsername()));
 
-        return new SelfValidatingPassport(new UserBadge($token->getUsername()));
+        $passport = new SelfValidatingPassport(new UserBadge($token->getUsername()));
+        $passport->setAttribute('yivoff_refresh_auth', true);
+
+        return $passport;
     }
 
     public function supports(HttpFoundation\Request $request): bool
