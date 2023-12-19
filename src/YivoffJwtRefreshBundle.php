@@ -12,6 +12,7 @@ use Yivoff\JwtRefreshBundle\DependencyInjection\YivoffJwtRefreshExtension;
 
 use function dirname;
 
+/** @codeCoverageIgnore */
 class YivoffJwtRefreshBundle implements BundleInterface
 {
     public const BUNDLE_PREFIX = 'yivoff_jwt_refresh';
