@@ -6,17 +6,17 @@
   "require": {
     "php": ">=8.1",
     "lexik/jwt-authentication-bundle": "^v2.20.3",
-    "symfony/config": "^6.3",
-    "symfony/dependency-injection": "^6.3",
-    "symfony/framework-bundle": "^6.3"
+    "symfony/config": "^6.3|^7.0.0",
+    "symfony/dependency-injection": "^6.3|^7.0.0",
+    "symfony/framework-bundle": "^6.3|^7.0.0"
   },
   "require-dev": {
     "bamarni/composer-bin-plugin": "^1.8.2",
     "nyholm/symfony-bundle-test": "dev-master",
-    "symfony/console": "^6.3"
+    "symfony/console": "^6.3|^7.0.0"
   },
   "suggest": {
-    "symfony/console": "^6.3"
+    "symfony/console": "^6.3|^7.0.0"
   },
   "config": {
     "allow-plugins": {
