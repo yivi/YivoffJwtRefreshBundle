@@ -20,7 +20,7 @@ jobs:
       - uses: actions/checkout@master
 
       - name: "Cache Composer packages"
-        uses: "actions/cache@v2"
+        uses: "actions/cache@v3"
         with:
           path: "~/.composer/cache"
           key: "php-${{ matrix.php }}-symfony-${{ matrix.symfony }}-composer-${{ hashFiles('composer.json') }}"
