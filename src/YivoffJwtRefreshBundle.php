@@ -9,26 +9,21 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\DependencyInjection\Extension\ExtensionInterface;
 use Symfony\Component\HttpKernel\Bundle\BundleInterface;
 use Yivoff\JwtRefreshBundle\DependencyInjection\YivoffJwtRefreshExtension;
+
 use function dirname;
 
 class YivoffJwtRefreshBundle implements BundleInterface
 {
     public const BUNDLE_PREFIX = 'yivoff_jwt_refresh';
 
-    protected ExtensionInterface|false|null $extension = null;
-    protected ?ContainerInterface $container = null;
+    protected null|ExtensionInterface|false $extension = null;
+    protected ?ContainerInterface $container           = null;
 
-    public function boot()
-    {
-    }
+    public function boot(): void {}
 
-    public function shutdown()
-    {
-    }
+    public function shutdown(): void {}
 
-    public function build(ContainerBuilder $container)
-    {
-    }
+    public function build(ContainerBuilder $container): void {}
 
     public function getContainerExtension(): ?ExtensionInterface
     {
@@ -42,7 +37,7 @@ class YivoffJwtRefreshBundle implements BundleInterface
 
     public function getNamespace(): string
     {
-        return 'Yivoff';
+        return 'Yivoff\\JwtRefreshBundle';
     }
 
     public function getPath(): string
@@ -54,5 +49,4 @@ class YivoffJwtRefreshBundle implements BundleInterface
     {
         $this->container = $container;
     }
-
 }
