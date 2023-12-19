@@ -125,7 +125,6 @@
       <path value="$PROJECT_DIR$/vendor-bin/static/vendor/webmozart/assert" />
       <path value="$PROJECT_DIR$/vendor-bin/static/vendor/psr/event-dispatcher" />
       <path value="$PROJECT_DIR$/vendor-bin/static/vendor/symfony/polyfill-intl-normalizer" />
-      <path value="$PROJECT_DIR$/vendor-bin/static/vendor/webmozart/path-util" />
       <path value="$PROJECT_DIR$/vendor-bin/static/vendor/symfony/cache-contracts" />
       <path value="$PROJECT_DIR$/vendor-bin/static/vendor/phpdocumentor/reflection-docblock" />
       <path value="$PROJECT_DIR$/vendor-bin/static/vendor/symfony/deprecation-contracts" />
@@ -147,7 +146,6 @@
       <path value="$PROJECT_DIR$/vendor-bin/static/vendor/psr/container" />
       <path value="$PROJECT_DIR$/vendor-bin/static/vendor/symfony/config" />
       <path value="$PROJECT_DIR$/vendor-bin/static/vendor/symfony/polyfill-ctype" />
-      <path value="$PROJECT_DIR$/vendor-bin/static/vendor/symfony/polyfill-php81" />
       <path value="$PROJECT_DIR$/vendor-bin/static/vendor/symfony/http-kernel" />
       <path value="$PROJECT_DIR$/vendor-bin/static/vendor/symfony/service-contracts" />
       <path value="$PROJECT_DIR$/vendor-bin/static/vendor/symfony/string" />
@@ -159,7 +157,6 @@
       <path value="$PROJECT_DIR$/vendor-bin/static/vendor/netresearch/jsonmapper" />
       <path value="$PROJECT_DIR$/vendor-bin/static/vendor/psalm/plugin-symfony" />
       <path value="$PROJECT_DIR$/vendor-bin/static/vendor/sebastian/diff" />
-      <path value="$PROJECT_DIR$/vendor-bin/static/vendor/openlss/lib-array2xml" />
       <path value="$PROJECT_DIR$/vendor-bin/static/vendor/php-standard-library/psalm-plugin" />
       <path value="$PROJECT_DIR$/vendor-bin/static/vendor/felixfbecker/advanced-json-rpc" />
       <path value="$PROJECT_DIR$/vendor-bin/static/vendor/amphp/byte-stream" />
@@ -196,6 +193,8 @@
       <path value="$PROJECT_DIR$/vendor-bin/static/vendor/phpstan/phpdoc-parser" />
       <path value="$PROJECT_DIR$/vendor-bin/static/vendor/symfony/polyfill-php83" />
       <path value="$PROJECT_DIR$/vendor-bin/csfixer/vendor/sebastian/diff" />
+      <path value="$PROJECT_DIR$/vendor-bin/static/vendor/fidry/cpu-core-counter" />
+      <path value="$PROJECT_DIR$/vendor-bin/static/vendor/spatie/array-to-xml" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.1" />

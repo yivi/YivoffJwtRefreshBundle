@@ -8,6 +8,9 @@
       <PhpSpecSuiteConfiguration>
         <option name="myPath" value="$PROJECT_DIR$/vendor-bin/static" />
       </PhpSpecSuiteConfiguration>
+      <PhpSpecSuiteConfiguration>
+        <option name="myPath" value="$PROJECT_DIR$/vendor-bin/static" />
+      </PhpSpecSuiteConfiguration>
     </suites>
   </component>
 </project>

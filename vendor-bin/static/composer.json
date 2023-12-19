@@ -1,9 +1,9 @@
 {
 
     "require": {
-        "vimeo/psalm": "^4.16.1",
-        "php-standard-library/psalm-plugin": "^1.1",
-        "psalm/plugin-symfony": "^2.5"
+        "vimeo/psalm": "^5.18.0",
+        "php-standard-library/psalm-plugin": "^2.3.0",
+        "psalm/plugin-symfony": "^v5.1.0"
     },
     "config": {
         "platform": {
