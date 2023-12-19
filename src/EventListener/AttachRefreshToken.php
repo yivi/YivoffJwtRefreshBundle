@@ -21,8 +21,7 @@ final class AttachRefreshToken
         private string $parameterName,
         private int $tokenShelfLife,
         private RefreshTokenProviderInterface $refreshTokenProvider
-    ) {
-    }
+    ) {}
 
     public function __invoke(AuthenticationSuccessEvent $event): void
     {

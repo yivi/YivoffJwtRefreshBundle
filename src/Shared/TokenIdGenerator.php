@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Yivoff\JwtRefreshBundle\Shared;
 
 use Yivoff\JwtRefreshBundle\Contracts\TokenIdGeneratorInterface;
+
 use function str_repeat;
 use function str_shuffle;
 use function substr;

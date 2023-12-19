@@ -12,6 +12,7 @@ use Symfony\Component\Security\Core\User\InMemoryUser;
 use Yivoff\JwtRefreshBundle\Contracts\RefreshTokenInterface;
 use Yivoff\JwtRefreshBundle\EventListener\AttachRefreshToken;
 use Yivoff\JwtRefreshBundle\Test\Resource\InMemoryRefreshTokenProvider;
+
 use function explode;
 
 /**

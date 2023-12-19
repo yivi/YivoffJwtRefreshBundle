@@ -12,7 +12,6 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 use Yivoff\JwtRefreshBundle\Contracts\PurgableRefreshTokenProviderInterface;
 use Yivoff\JwtRefreshBundle\Contracts\RefreshTokenProviderInterface;
 
-
 #[AsCommand('yivoff:jwt_refresh:purge_expired_tokens')]
 class PurgeExpiredTokensCommand extends Command
 {

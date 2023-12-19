@@ -8,7 +8,5 @@ use Yivoff\JwtRefreshBundle\Exception\FailType;
 
 class JwtRefreshTokenFailed
 {
-    public function __construct(public readonly FailType $failType, public readonly ?string $tokenId, public readonly ?string $userIdentifier)
-    {
-    }
+    public function __construct(public readonly FailType $failType, public readonly ?string $tokenId, public readonly ?string $userIdentifier) {}
 }

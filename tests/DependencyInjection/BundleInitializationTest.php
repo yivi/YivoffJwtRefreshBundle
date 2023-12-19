@@ -16,6 +16,7 @@ use Yivoff\JwtRefreshBundle\YivoffJwtRefreshBundle;
 
 /**
  * @internal
+ *
  * @coversNothing
  */
 class BundleInitializationTest extends KernelTestCase

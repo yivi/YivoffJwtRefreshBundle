@@ -7,6 +7,7 @@ namespace Yivoff\JwtRefreshBundle\Test\Resource;
 use InvalidArgumentException;
 use Yivoff\JwtRefreshBundle\Contracts\RefreshTokenInterface;
 use Yivoff\JwtRefreshBundle\Contracts\RefreshTokenProviderInterface;
+
 use function array_key_exists;
 
 class InMemoryRefreshTokenProvider implements RefreshTokenProviderInterface

@@ -6,6 +6,7 @@ namespace Yivoff\JwtRefreshBundle\Test\Unit;
 
 use Yivoff\JwtRefreshBundle\Contracts\HasherInterface;
 use Yivoff\JwtRefreshBundle\Contracts\TokenIdGeneratorInterface;
+
 use function random_int;
 use function str_repeat;
 
@@ -14,9 +15,7 @@ trait MockerTrait
     private function createHasher(bool $success = true): HasherInterface
     {
         return new class($success) implements HasherInterface {
-            public function __construct(private bool $success)
-            {
-            }
+            public function __construct(private bool $success) {}
 
             public function hash(string $token): string
             {

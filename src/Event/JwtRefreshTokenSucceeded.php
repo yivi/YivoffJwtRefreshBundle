@@ -6,7 +6,5 @@ namespace Yivoff\JwtRefreshBundle\Event;
 
 class JwtRefreshTokenSucceeded
 {
-    public function __construct(public readonly string $tokenId, public readonly string $userIdentifier)
-    {
-    }
+    public function __construct(public readonly string $tokenId, public readonly string $userIdentifier) {}
 }

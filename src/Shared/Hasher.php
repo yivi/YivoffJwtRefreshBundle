@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Yivoff\JwtRefreshBundle\Shared;
 
 use Yivoff\JwtRefreshBundle\Contracts\HasherInterface;
+
 use function hash_equals;
 use function hash_hmac;
 
@@ -13,9 +14,7 @@ use function hash_hmac;
  */
 final class Hasher implements HasherInterface
 {
-    public function __construct(private string $hash_key)
-    {
-    }
+    public function __construct(private string $hash_key) {}
 
     public function verify(string $token, string $hash): bool
     {

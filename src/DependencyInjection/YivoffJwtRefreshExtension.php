@@ -17,6 +17,7 @@ use Yivoff\JwtRefreshBundle\Security\Authenticator;
 use Yivoff\JwtRefreshBundle\Shared\Hasher;
 use Yivoff\JwtRefreshBundle\Shared\TokenIdGenerator;
 use Yivoff\JwtRefreshBundle\YivoffJwtRefreshBundle;
+
 use function class_exists;
 
 /**

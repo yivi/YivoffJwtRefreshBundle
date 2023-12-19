@@ -16,8 +16,7 @@ class Autowired
         private TokenIdGeneratorInterface $generator,
         private Authenticator $authenticator,
         private AttachRefreshToken $eventListener
-    ) {
-    }
+    ) {}
 
     public function getEncoder(): HasherInterface
     {

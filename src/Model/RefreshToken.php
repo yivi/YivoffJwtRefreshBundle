@@ -12,9 +12,7 @@ use Yivoff\JwtRefreshBundle\Contracts\RefreshTokenInterface;
  */
 class RefreshToken implements RefreshTokenInterface
 {
-    public function __construct(private string $username, private string $identifier, private string $verifier, private DateTimeImmutable $validUntil)
-    {
-    }
+    public function __construct(private string $username, private string $identifier, private string $verifier, private DateTimeImmutable $validUntil) {}
 
     public function getUsername(): string
     {

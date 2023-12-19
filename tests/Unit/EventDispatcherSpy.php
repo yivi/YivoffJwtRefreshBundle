@@ -6,6 +6,7 @@ namespace Yivoff\JwtRefreshBundle\Test\Unit;
 
 use InvalidArgumentException;
 use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
+
 use function array_key_exists;
 
 class EventDispatcherSpy implements EventDispatcherInterface

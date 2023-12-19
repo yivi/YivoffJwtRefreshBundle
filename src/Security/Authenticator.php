@@ -23,6 +23,7 @@ use Yivoff\JwtRefreshBundle\Exception\PayloadInvalidException;
 use Yivoff\JwtRefreshBundle\Exception\TokenExpiredException;
 use Yivoff\JwtRefreshBundle\Exception\TokenInvalidException;
 use Yivoff\JwtRefreshBundle\Exception\TokenNotFoundException;
+
 use function explode;
 use function str_contains;
 use function time;
@@ -35,8 +36,7 @@ final class Authenticator extends AbstractAuthenticator
         private RefreshTokenProviderInterface $tokenProvider,
         private EventDispatcherInterface $eventDispatcher,
         private string $parameterName
-    ) {
-    }
+    ) {}
 
     public function authenticate(HttpFoundation\Request $request): Passport
     {
