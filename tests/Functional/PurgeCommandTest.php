@@ -29,6 +29,7 @@ class PurgeCommandTest extends KernelTestCase
         $kernel = self::bootKernel([
             'config' => static function (TestKernel $kernel): void {
                 $kernel->addTestConfig(__DIR__.'/../Resource/config/config.php');
+                $kernel->addTestConfig(__DIR__.'/../Resource/config/security-config.yaml');
             },
         ]);
 
@@ -59,6 +60,7 @@ class PurgeCommandTest extends KernelTestCase
         $kernel = self::bootKernel([
             'config' => static function (TestKernel $kernel): void {
                 $kernel->addTestConfig(__DIR__.'/../Resource/config/config_purgable.php');
+                $kernel->addTestConfig(__DIR__.'/../Resource/config/security-config.yaml');
             },
         ]);
 
@@ -69,7 +71,7 @@ class PurgeCommandTest extends KernelTestCase
 
         $provider->add(new RefreshToken('foo', '11111', 'baz', new DateTimeImmutable('-5 seconds')));
         $provider->add(new RefreshToken('bar', '22222', 'baz', new DateTimeImmutable('-5 seconds')));
-        $provider->add(new RefreshToken('baz', '33333', 'baz', new DateTimeImmutable('+5 seconds')));
+        $provider->add(new RefreshToken('baz', '33333', 'baz', new DateTimeImmutable('+15 seconds')));
 
         $application   = new Application($kernel);
         $command       = $application->find(PurgeExpiredTokensCommand::getDefaultName());

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Yivoff\JwtRefreshBundle\Test\Resource;
 
-use Safe\DateTimeImmutable;
+use DateTimeImmutable;
 use Yivoff\JwtRefreshBundle\Contracts\PurgableRefreshTokenProviderInterface;
 
 class PurgableInMemoryRefreshTokenProvider extends InMemoryRefreshTokenProvider implements PurgableRefreshTokenProviderInterface
@@ -12,7 +12,9 @@ class PurgableInMemoryRefreshTokenProvider extends InMemoryRefreshTokenProvider 
     public function purgeExpiredTokens(): void
     {
         foreach ($this->tokens as $tokenId => $token) {
-            if ($token->getValidUntil() < (new DateTimeImmutable())->getTimestamp()) {
+            $now        = (new DateTimeImmutable())->getTimestamp();
+            $expiration = $token->getValidUntil();
+            if ($expiration < $now) {
                 unset($this->tokens[$tokenId]);
             }
         }
