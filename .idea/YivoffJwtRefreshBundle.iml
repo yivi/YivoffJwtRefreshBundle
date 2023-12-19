@@ -6,7 +6,6 @@
       <sourceFolder url="file://$MODULE_DIR$/Test" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true" packagePrefix="Yivoff\JwtRefreshBundle\Test\" />
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" packagePrefix="Yivoff\JwtRefreshBundle\" />
-      <sourceFolder url="file://$MODULE_DIR$/vendor-bin/static/spec" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/vendor-bin/static/tests" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/vendor-bin/testing/tests" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/config" />
