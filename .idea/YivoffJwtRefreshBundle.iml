@@ -2,8 +2,15 @@
 <module type="WEB_MODULE" version="4">
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/spec" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/Test" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true" packagePrefix="Yivoff\JwtRefreshBundle\Test\" />
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" packagePrefix="Yivoff\JwtRefreshBundle\" />
+      <sourceFolder url="file://$MODULE_DIR$/vendor-bin/static/tests" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/vendor-bin/testing/tests" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/vendor-bin/static/spec" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/vendor-bin/csfixer/spec" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/vendor-bin/testing/spec" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/config" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/security-bundle" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/security-http" />
