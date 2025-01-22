@@ -13,19 +13,19 @@ use Yivoff\JwtRefreshBundle\Contracts\RefreshTokenProviderInterface;
 use Yivoff\JwtRefreshBundle\Contracts\TokenIdGeneratorInterface;
 use Yivoff\JwtRefreshBundle\Model\RefreshToken;
 
-final class AttachRefreshToken
+final readonly class AttachRefreshToken
 {
     public function __construct(
-        private HasherInterface $hasher,
-        private TokenIdGeneratorInterface $tokenIdGenerator,
-        private string $parameterName,
-        private int $tokenShelfLife,
+        private HasherInterface               $hasher,
+        private TokenIdGeneratorInterface     $tokenIdGenerator,
+        private string                        $parameterName,
+        private int                           $tokenShelfLife,
         private RefreshTokenProviderInterface $refreshTokenProvider
     ) {}
 
     public function __invoke(AuthenticationSuccessEvent $event): void
     {
-        /** @var UserInterface $user */
+
         $data = $event->getData();
         $user = $event->getUser();
 

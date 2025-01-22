@@ -18,6 +18,7 @@ final class BundleConfiguration implements ConfigurationInterface
     {
         $treeBuilder = new TreeBuilder(YivoffJwtRefreshBundle::BUNDLE_PREFIX);
 
+        /** @phpstan-ignore-next-line */
         $treeBuilder
             ->getRootNode()
                 ->children()

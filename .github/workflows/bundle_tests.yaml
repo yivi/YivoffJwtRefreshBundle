@@ -13,8 +13,8 @@ jobs:
     strategy:
       matrix:
         operating-system: [ ubuntu-latest ]
-        php: [ '8.2', '8.3' ]
-        symfony: [ '6.3.0', '6.4.0', '7.0.0' ]
+        php: [ '8.3', '8.4' ]
+        symfony: [ '7.1.0', '7.2.0' ]
 
     steps:
       - uses: actions/checkout@master
@@ -43,27 +43,28 @@ jobs:
       - name: Run test suite on PHP ${{ matrix.php }} and Symfony ${{ matrix.symfony }}
         run: ./vendor/bin/phpunit --coverage-clover=coverage.xml
 
-      - uses: codecov/codecov-action@v2
+      - uses: codecov/codecov-action@v5
         with:
           files: ./coverage.xml
           fail_ci_if_error: true # optional (default = false)
           verbose: true # optional (default = false)
+          token: ${{ secrets.CODECOV_TOKEN }}
 
-      - name: Run Psalm
-        run: ./vendor/bin/psalm
+      - name: Run PhpStan
+        run: ./vendor/bin/phpstan
 
-  php-cs-fixer:
-    runs-on: ubuntu-latest
-    needs: test
-
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          ref: ${{ github.head_ref }}
-
-      - name: Run php-cs-fixer
-        uses: docker://oskarstark/php-cs-fixer-ga
-
-      - uses: stefanzweifel/git-auto-commit-action@v4
-        with:
-          commit_message: Apply Code Style Fixes
+#  php-cs-fixer:
+#    runs-on: ubuntu-latest
+#    needs: test
+#
+#    steps:
+#      - uses: actions/checkout@v2
+#        with:
+#          ref: ${{ github.head_ref }}
+#
+#      - name: Run php-cs-fixer
+#        uses: docker://oskarstark/php-cs-fixer-ga
+#
+#      - uses: stefanzweifel/git-auto-commit-action@v4
+#        with:
+#          commit_message: Apply Code Style Fixes

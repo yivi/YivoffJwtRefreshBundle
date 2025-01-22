@@ -1,0 +1,9 @@
+parameters:
+    pro:
+        dnsServers!:
+            - '8.8.8.8'
+
+    level: 10
+
+    paths:
+        - src/

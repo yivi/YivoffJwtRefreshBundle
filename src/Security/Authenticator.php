@@ -83,7 +83,7 @@ final class Authenticator extends AbstractAuthenticator
         return new HttpFoundation\JsonResponse(['error' => $exception->getMessage()], HttpFoundation\Response::HTTP_UNAUTHORIZED);
     }
 
-    public function onAuthenticationSuccess(HttpFoundation\Request $request, TokenInterface $token, string $firewallName): ?HttpFoundation\Response
+    public function onAuthenticationSuccess(HttpFoundation\Request $request, TokenInterface $token, string $firewallName): HttpFoundation\Response
     {
         return $this->successHandler->onAuthenticationSuccess($request, $token);
     }

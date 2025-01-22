@@ -26,3 +26,5 @@ coverage.html
 
 .idea/httpRequests
 
+tests/Resource/var/*
+!tests/Resource/var/.gitkeep

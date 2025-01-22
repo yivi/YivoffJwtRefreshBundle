@@ -6,6 +6,7 @@ namespace Yivoff\JwtRefreshBundle\Test\Unit;
 
 use DateTimeImmutable;
 use Lexik\Bundle\JWTAuthenticationBundle\Security\Http\Authentication\AuthenticationSuccessHandler;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -23,10 +24,10 @@ use Yivoff\JwtRefreshBundle\Security\Authenticator;
 use Yivoff\JwtRefreshBundle\Test\Resource\InMemoryRefreshTokenProvider;
 
 /**
- * @covers \Yivoff\JwtRefreshBundle\Security\Authenticator
  *
  * @internal
  */
+#[CoversClass(Authenticator::class)]
 class AuthenticatorTest extends TestCase
 {
     use MockerTrait;

@@ -8,7 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
-use Symfony\Component\HttpKernel\DependencyInjection\Extension;
+use Symfony\Component\DependencyInjection\Extension\Extension;
 use Yivoff\JwtRefreshBundle\Console\PurgeExpiredTokensCommand;
 use Yivoff\JwtRefreshBundle\Contracts\HasherInterface;
 use Yivoff\JwtRefreshBundle\Contracts\TokenIdGeneratorInterface;
@@ -36,7 +36,8 @@ class YivoffJwtRefreshExtension extends Extension
             $container->setParameter(YivoffJwtRefreshBundle::BUNDLE_PREFIX.'.'.$key, $value);
         }
 
-        $providerReference = new Reference((string) $config['token_provider_service']);
+        /** @phpstan-ignore-next-line  */
+        $providerReference = new Reference($config['token_provider_service']);
 
         $container->register(AttachRefreshToken::class)
             ->setArgument(0, new Reference(HasherInterface::class))

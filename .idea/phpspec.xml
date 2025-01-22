@@ -9,7 +9,10 @@
         <option name="myPath" value="$PROJECT_DIR$/vendor-bin/static" />
       </PhpSpecSuiteConfiguration>
       <PhpSpecSuiteConfiguration>
-        <option name="myPath" value="$PROJECT_DIR$/vendor-bin/static" />
+        <option name="myPath" value="$PROJECT_DIR$/vendor-bin/csfixer" />
+      </PhpSpecSuiteConfiguration>
+      <PhpSpecSuiteConfiguration>
+        <option name="myPath" value="$PROJECT_DIR$/vendor-bin/testing" />
       </PhpSpecSuiteConfiguration>
     </suites>
   </component>

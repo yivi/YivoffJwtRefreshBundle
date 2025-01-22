@@ -6,6 +6,7 @@ namespace Yivoff\JwtRefreshBundle\Test\DependencyInjection;
 
 use Lexik\Bundle\JWTAuthenticationBundle\LexikJWTAuthenticationBundle;
 use Nyholm\BundleTest\TestKernel;
+use PHPUnit\Framework\Attributes\CoversNothing;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Bundle\SecurityBundle\SecurityBundle;
 use Yivoff\JwtRefreshBundle\Contracts\HasherInterface;
@@ -16,17 +17,18 @@ use Yivoff\JwtRefreshBundle\YivoffJwtRefreshBundle;
 
 /**
  * @internal
- *
- * @coversNothing
  */
+#[CoversNothing]
 class BundleInitializationTest extends KernelTestCase
 {
     public function testServiceAndAliasesCreation(): void
     {
         self::bootKernel([
             'config' => static function (TestKernel $kernel): void {
-                $kernel->addTestConfig(__DIR__.'/../Resource/config/config.php');
-                $kernel->addTestConfig(__DIR__.'/../Resource/config/security-config.yaml');
+                $kernel->addTestConfig(__DIR__.'/../Resource/config/framework.php');
+                $kernel->addTestConfig(__DIR__.'/../Resource/config/lexik.php');
+                $kernel->addTestConfig(__DIR__.'/../Resource/config/security.yaml');
+                $kernel->addTestConfig(__DIR__.'/../Resource/config/bundle-purgable.php');
             },
         ]);
         $container = self::getContainer();

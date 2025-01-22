@@ -14,7 +14,7 @@ class EventDispatcherSpy implements EventDispatcherInterface
     /** @var object[] */
     private array $events = [];
 
-    public function dispatch(object $event, string $eventName = null): object
+    public function dispatch(object $event, ?string $eventName = null): object
     {
         $this->events[$eventName ?? $event::class] = $event;
 
