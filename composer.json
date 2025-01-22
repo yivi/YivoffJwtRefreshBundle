@@ -6,19 +6,19 @@
   "require": {
     "php": ">=8.3",
     "lexik/jwt-authentication-bundle": "^v3.1.1",
-    "symfony/config": "^v7.2.0",
-    "symfony/dependency-injection": "^v7.2.0",
-    "symfony/framework-bundle": "^v7.2.2"
+    "symfony/config": "^v7.1",
+    "symfony/dependency-injection": "^v7.1",
+    "symfony/framework-bundle": "^v7.1"
   },
   "require-dev": {
     "bamarni/composer-bin-plugin": "^1.8.2",
-    "symfony/console": "^7.1.0",
+    "symfony/console": "^7.1",
     "nyholm/symfony-bundle-test": "dev-master",
     "phpstan/phpstan": "^2.1",
     "phpstan/extension-installer": "^1.4"
   },
   "suggest": {
-    "symfony/console": "^7.1.0"
+    "symfony/console": "^7.1"
   },
   "config": {
     "allow-plugins": {
