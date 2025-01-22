@@ -182,6 +182,39 @@
       <path value="$PROJECT_DIR$/vendor/symfony/framework-bundle" />
       <path value="$PROJECT_DIR$/vendor/symfony/cache" />
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-ctype" />
+      <path value="$PROJECT_DIR$/vendor/namshi/jose" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php80" />
+      <path value="$PROJECT_DIR$/vendor-bin/testing/vendor/psr/log" />
+      <path value="$PROJECT_DIR$/vendor-bin/testing/vendor/psr/container" />
+      <path value="$PROJECT_DIR$/vendor-bin/testing/vendor/webmozart/assert" />
+      <path value="$PROJECT_DIR$/vendor-bin/testing/vendor/webmozart/path-util" />
+      <path value="$PROJECT_DIR$/vendor-bin/testing/vendor/seld/jsonlint" />
+      <path value="$PROJECT_DIR$/vendor-bin/testing/vendor/sebastian/resource-operations" />
+      <path value="$PROJECT_DIR$/vendor-bin/testing/vendor/justinrainbow/json-schema" />
+      <path value="$PROJECT_DIR$/vendor-bin/testing/vendor/doctrine/instantiator" />
+      <path value="$PROJECT_DIR$/vendor-bin/testing/vendor/ondram/ci-detector" />
+      <path value="$PROJECT_DIR$/vendor-bin/testing/vendor/symfony/console" />
+      <path value="$PROJECT_DIR$/vendor-bin/testing/vendor/symfony/deprecation-contracts" />
+      <path value="$PROJECT_DIR$/vendor-bin/testing/vendor/symfony/finder" />
+      <path value="$PROJECT_DIR$/vendor-bin/testing/vendor/symfony/polyfill-intl-grapheme" />
+      <path value="$PROJECT_DIR$/vendor-bin/testing/vendor/symfony/polyfill-ctype" />
+      <path value="$PROJECT_DIR$/vendor-bin/testing/vendor/symfony/filesystem" />
+      <path value="$PROJECT_DIR$/vendor-bin/testing/vendor/symfony/polyfill-php73" />
+      <path value="$PROJECT_DIR$/vendor-bin/testing/vendor/symfony/process" />
+      <path value="$PROJECT_DIR$/vendor-bin/testing/vendor/symfony/polyfill-intl-normalizer" />
+      <path value="$PROJECT_DIR$/vendor-bin/testing/vendor/symfony/polyfill-php80" />
+      <path value="$PROJECT_DIR$/vendor-bin/testing/vendor/symfony/string" />
+      <path value="$PROJECT_DIR$/vendor-bin/testing/vendor/symfony/service-contracts" />
+      <path value="$PROJECT_DIR$/vendor-bin/testing/vendor/sanmai/later" />
+      <path value="$PROJECT_DIR$/vendor-bin/testing/vendor/symfony/polyfill-mbstring" />
+      <path value="$PROJECT_DIR$/vendor-bin/testing/vendor/ocramius/package-versions" />
+      <path value="$PROJECT_DIR$/vendor-bin/testing/vendor/thecodingmachine/safe" />
+      <path value="$PROJECT_DIR$/vendor-bin/testing/vendor/infection/extension-installer" />
+      <path value="$PROJECT_DIR$/vendor-bin/testing/vendor/infection/include-interceptor" />
+      <path value="$PROJECT_DIR$/vendor-bin/testing/vendor/sanmai/pipeline" />
+      <path value="$PROJECT_DIR$/vendor-bin/testing/vendor/infection/abstract-testframework-adapter" />
+      <path value="$PROJECT_DIR$/vendor-bin/testing/vendor/infection/infection" />
+      <path value="$PROJECT_DIR$/vendor-bin/static/vendor/symfony/polyfill-php80" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.3" />
@@ -197,10 +230,10 @@
   </component>
   <component name="PhpUnit">
     <phpunit_settings>
-      <PhpUnitSettings custom_loader_path="$PROJECT_DIR$/vendor-bin/testing/vendor/autoload.php" />
       <PhpUnitSettings custom_loader_path="$PROJECT_DIR$/vendor-bin/csfixer/vendor/autoload.php" />
-      <PhpUnitSettings configuration_file_path="$PROJECT_DIR$/phpunit.xml" custom_loader_path="$PROJECT_DIR$/vendor/autoload.php" use_configuration_file="true" />
       <PhpUnitSettings custom_loader_path="$PROJECT_DIR$/vendor-bin/static/vendor/autoload.php" />
+      <PhpUnitSettings custom_loader_path="$PROJECT_DIR$/vendor-bin/testing/vendor/autoload.php" />
+      <PhpUnitSettings configuration_file_path="$PROJECT_DIR$/phpunit.xml" custom_loader_path="$PROJECT_DIR$/vendor/autoload.php" use_configuration_file="true" />
     </phpunit_settings>
   </component>
   <component name="Psalm">
