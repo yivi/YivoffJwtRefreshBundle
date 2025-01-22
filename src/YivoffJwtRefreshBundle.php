@@ -15,7 +15,7 @@ use function dirname;
 /** @codeCoverageIgnore */
 class YivoffJwtRefreshBundle implements BundleInterface
 {
-    public const BUNDLE_PREFIX = 'yivoff_jwt_refresh';
+    public const string BUNDLE_PREFIX = 'yivoff_jwt_refresh';
 
     protected null|ExtensionInterface|false $extension = null;
     protected ?ContainerInterface $container           = null;

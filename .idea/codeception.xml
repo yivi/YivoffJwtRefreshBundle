@@ -4,12 +4,6 @@
     <option name="configurations">
       <list>
         <Configuration>
-          <option name="path" value="$PROJECT_DIR$/tests" />
-        </Configuration>
-        <Configuration>
-          <option name="path" value="$PROJECT_DIR$/vendor-bin/static/tests" />
-        </Configuration>
-        <Configuration>
           <option name="path" value="$PROJECT_DIR$/vendor-bin/static/tests" />
         </Configuration>
       </list>

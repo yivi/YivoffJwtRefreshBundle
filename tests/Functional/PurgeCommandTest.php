@@ -7,6 +7,7 @@ namespace Yivoff\JwtRefreshBundle\Test\Functional;
 use DateTimeImmutable;
 use Lexik\Bundle\JWTAuthenticationBundle\LexikJWTAuthenticationBundle;
 use Nyholm\BundleTest\TestKernel;
+use PHPUnit\Framework\Attributes\CoversClass;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Bundle\SecurityBundle\SecurityBundle;
@@ -18,18 +19,19 @@ use Yivoff\JwtRefreshBundle\Model\RefreshToken;
 use Yivoff\JwtRefreshBundle\YivoffJwtRefreshBundle;
 
 /**
- * @covers \Yivoff\JwtRefreshBundle\Console\PurgeExpiredTokensCommand
- *
  * @internal
  */
+#[CoversClass(PurgeExpiredTokensCommand::class)]
 class PurgeCommandTest extends KernelTestCase
 {
     public function testNonPurgableProviderFails(): void
     {
         $kernel = self::bootKernel([
             'config' => static function (TestKernel $kernel): void {
-                $kernel->addTestConfig(__DIR__.'/../Resource/config/config.php');
-                $kernel->addTestConfig(__DIR__.'/../Resource/config/security-config.yaml');
+                $kernel->addTestConfig(__DIR__.'/../Resource/config/framework.php');
+                $kernel->addTestConfig(__DIR__.'/../Resource/config/lexik.php');
+                $kernel->addTestConfig(__DIR__.'/../Resource/config/security.yaml');
+                $kernel->addTestConfig(__DIR__.'/../Resource/config/bundle-non-purgable.php');
             },
         ]);
 
@@ -59,8 +61,10 @@ class PurgeCommandTest extends KernelTestCase
     {
         $kernel = self::bootKernel([
             'config' => static function (TestKernel $kernel): void {
-                $kernel->addTestConfig(__DIR__.'/../Resource/config/config_purgable.php');
-                $kernel->addTestConfig(__DIR__.'/../Resource/config/security-config.yaml');
+                $kernel->addTestConfig(__DIR__.'/../Resource/config/framework.php');
+                $kernel->addTestConfig(__DIR__.'/../Resource/config/lexik.php');
+                $kernel->addTestConfig(__DIR__.'/../Resource/config/security.yaml');
+                $kernel->addTestConfig(__DIR__.'/../Resource/config/bundle-purgable.php');
             },
         ]);
 

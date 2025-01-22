@@ -6,6 +6,7 @@ namespace Yivoff\JwtRefreshBundle\Test\Unit;
 
 use DateTimeImmutable;
 use Lexik\Bundle\JWTAuthenticationBundle\Event\AuthenticationSuccessEvent;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\User\InMemoryUser;
@@ -16,10 +17,10 @@ use Yivoff\JwtRefreshBundle\Test\Resource\InMemoryRefreshTokenProvider;
 use function explode;
 
 /**
- * @covers \Yivoff\JwtRefreshBundle\EventListener\AttachRefreshToken
  *
  * @internal
  */
+#[CoversClass(AttachRefreshToken::class)]
 class AttachRefreshTokenTest extends TestCase
 {
     use MockerTrait;

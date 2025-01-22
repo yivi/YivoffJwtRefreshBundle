@@ -1,14 +1,10 @@
 {
     "require": {
-        "phpunit/phpunit": "^9.5",
-        "infection/infection": "^0.24.0"
+        "phpunit/phpunit": "^11.5.3"
     },
     "config": {
         "allow-plugins": {
             "infection/extension-installer": true
-        },
-        "platform": {
-            "php": "8.1"
         }
     }
 }

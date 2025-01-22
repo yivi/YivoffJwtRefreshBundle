@@ -17,6 +17,11 @@
       <PhpCSFixerConfiguration tool_path="$PROJECT_DIR$/vendor/bin/php-cs-fixer" />
     </phpcsfixer_settings>
   </component>
+  <component name="PhpCodeSniffer">
+    <phpcs_settings>
+      <phpcs_by_interpreter asDefaultInterpreter="true" interpreter_id="1d3bdfd1-8e65-4332-9d45-b755858c07c7" timeout="30000" />
+    </phpcs_settings>
+  </component>
   <component name="PhpIncludePathManager">
     <include_path>
       <path value="$PROJECT_DIR$/vendor/symfony/config" />
@@ -26,7 +31,6 @@
       <path value="$PROJECT_DIR$/vendor/symfony/framework-bundle" />
       <path value="$PROJECT_DIR$/vendor/symfony/finder" />
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-ctype" />
-      <path value="$PROJECT_DIR$/vendor/namshi/jose" />
       <path value="$PROJECT_DIR$/vendor/bamarni/composer-bin-plugin" />
       <path value="$PROJECT_DIR$/vendor/symfony/property-access" />
       <path value="$PROJECT_DIR$/vendor/nyholm/symfony-bundle-test" />
@@ -61,19 +65,13 @@
       <path value="$PROJECT_DIR$/vendor/symfony/var-dumper" />
       <path value="$PROJECT_DIR$/vendor/symfony/routing" />
       <path value="$PROJECT_DIR$/vendor/symfony/service-contracts" />
-      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php80" />
-      <path value="$PROJECT_DIR$/vendor-bin/testing/vendor/psr/log" />
-      <path value="$PROJECT_DIR$/vendor-bin/testing/vendor/psr/container" />
       <path value="$PROJECT_DIR$/vendor-bin/testing/vendor/phpunit/php-code-coverage" />
       <path value="$PROJECT_DIR$/vendor-bin/testing/vendor/composer" />
       <path value="$PROJECT_DIR$/vendor-bin/testing/vendor/myclabs/deep-copy" />
-      <path value="$PROJECT_DIR$/vendor-bin/testing/vendor/webmozart/assert" />
-      <path value="$PROJECT_DIR$/vendor-bin/testing/vendor/webmozart/path-util" />
       <path value="$PROJECT_DIR$/vendor-bin/testing/vendor/theseer/tokenizer" />
       <path value="$PROJECT_DIR$/vendor-bin/testing/vendor/sebastian/type" />
       <path value="$PROJECT_DIR$/vendor-bin/testing/vendor/sebastian/diff" />
       <path value="$PROJECT_DIR$/vendor-bin/testing/vendor/sebastian/lines-of-code" />
-      <path value="$PROJECT_DIR$/vendor-bin/testing/vendor/seld/jsonlint" />
       <path value="$PROJECT_DIR$/vendor-bin/testing/vendor/sebastian/exporter" />
       <path value="$PROJECT_DIR$/vendor-bin/testing/vendor/sebastian/version" />
       <path value="$PROJECT_DIR$/vendor-bin/testing/vendor/sebastian/complexity" />
@@ -85,35 +83,10 @@
       <path value="$PROJECT_DIR$/vendor-bin/testing/vendor/sebastian/object-reflector" />
       <path value="$PROJECT_DIR$/vendor-bin/testing/vendor/phar-io/version" />
       <path value="$PROJECT_DIR$/vendor-bin/testing/vendor/phar-io/manifest" />
-      <path value="$PROJECT_DIR$/vendor-bin/testing/vendor/sebastian/resource-operations" />
       <path value="$PROJECT_DIR$/vendor-bin/testing/vendor/sebastian/code-unit-reverse-lookup" />
       <path value="$PROJECT_DIR$/vendor-bin/testing/vendor/nikic/php-parser" />
       <path value="$PROJECT_DIR$/vendor-bin/testing/vendor/sebastian/global-state" />
       <path value="$PROJECT_DIR$/vendor-bin/testing/vendor/sebastian/environment" />
-      <path value="$PROJECT_DIR$/vendor-bin/testing/vendor/justinrainbow/json-schema" />
-      <path value="$PROJECT_DIR$/vendor-bin/testing/vendor/doctrine/instantiator" />
-      <path value="$PROJECT_DIR$/vendor-bin/testing/vendor/ondram/ci-detector" />
-      <path value="$PROJECT_DIR$/vendor-bin/testing/vendor/symfony/console" />
-      <path value="$PROJECT_DIR$/vendor-bin/testing/vendor/symfony/deprecation-contracts" />
-      <path value="$PROJECT_DIR$/vendor-bin/testing/vendor/symfony/finder" />
-      <path value="$PROJECT_DIR$/vendor-bin/testing/vendor/symfony/polyfill-intl-grapheme" />
-      <path value="$PROJECT_DIR$/vendor-bin/testing/vendor/symfony/polyfill-ctype" />
-      <path value="$PROJECT_DIR$/vendor-bin/testing/vendor/symfony/filesystem" />
-      <path value="$PROJECT_DIR$/vendor-bin/testing/vendor/symfony/polyfill-php73" />
-      <path value="$PROJECT_DIR$/vendor-bin/testing/vendor/symfony/process" />
-      <path value="$PROJECT_DIR$/vendor-bin/testing/vendor/symfony/polyfill-intl-normalizer" />
-      <path value="$PROJECT_DIR$/vendor-bin/testing/vendor/symfony/polyfill-php80" />
-      <path value="$PROJECT_DIR$/vendor-bin/testing/vendor/symfony/string" />
-      <path value="$PROJECT_DIR$/vendor-bin/testing/vendor/symfony/service-contracts" />
-      <path value="$PROJECT_DIR$/vendor-bin/testing/vendor/sanmai/later" />
-      <path value="$PROJECT_DIR$/vendor-bin/testing/vendor/symfony/polyfill-mbstring" />
-      <path value="$PROJECT_DIR$/vendor-bin/testing/vendor/ocramius/package-versions" />
-      <path value="$PROJECT_DIR$/vendor-bin/testing/vendor/thecodingmachine/safe" />
-      <path value="$PROJECT_DIR$/vendor-bin/testing/vendor/infection/extension-installer" />
-      <path value="$PROJECT_DIR$/vendor-bin/testing/vendor/infection/include-interceptor" />
-      <path value="$PROJECT_DIR$/vendor-bin/testing/vendor/sanmai/pipeline" />
-      <path value="$PROJECT_DIR$/vendor-bin/testing/vendor/infection/abstract-testframework-adapter" />
-      <path value="$PROJECT_DIR$/vendor-bin/testing/vendor/infection/infection" />
       <path value="$PROJECT_DIR$/vendor-bin/testing/vendor/phpunit/phpunit" />
       <path value="$PROJECT_DIR$/vendor-bin/testing/vendor/phpunit/php-text-template" />
       <path value="$PROJECT_DIR$/vendor-bin/testing/vendor/phpunit/php-invoker" />
@@ -142,7 +115,6 @@
       <path value="$PROJECT_DIR$/vendor-bin/static/vendor/psr/cache" />
       <path value="$PROJECT_DIR$/vendor-bin/static/vendor/symfony/dependency-injection" />
       <path value="$PROJECT_DIR$/vendor-bin/static/vendor/psr/log" />
-      <path value="$PROJECT_DIR$/vendor-bin/static/vendor/symfony/polyfill-php80" />
       <path value="$PROJECT_DIR$/vendor-bin/static/vendor/psr/container" />
       <path value="$PROJECT_DIR$/vendor-bin/static/vendor/symfony/config" />
       <path value="$PROJECT_DIR$/vendor-bin/static/vendor/symfony/polyfill-ctype" />
@@ -195,15 +167,37 @@
       <path value="$PROJECT_DIR$/vendor-bin/csfixer/vendor/sebastian/diff" />
       <path value="$PROJECT_DIR$/vendor-bin/static/vendor/fidry/cpu-core-counter" />
       <path value="$PROJECT_DIR$/vendor-bin/static/vendor/spatie/array-to-xml" />
+      <path value="$PROJECT_DIR$/vendor/symfony/type-info" />
+      <path value="$PROJECT_DIR$/vendor-bin/csfixer/vendor/react/child-process" />
+      <path value="$PROJECT_DIR$/vendor-bin/csfixer/vendor/react/socket" />
+      <path value="$PROJECT_DIR$/vendor-bin/csfixer/vendor/fidry/cpu-core-counter" />
+      <path value="$PROJECT_DIR$/vendor-bin/csfixer/vendor/clue/ndjson-react" />
+      <path value="$PROJECT_DIR$/vendor-bin/csfixer/vendor/react/event-loop" />
+      <path value="$PROJECT_DIR$/vendor-bin/csfixer/vendor/react/dns" />
+      <path value="$PROJECT_DIR$/vendor-bin/csfixer/vendor/evenement/evenement" />
+      <path value="$PROJECT_DIR$/vendor-bin/csfixer/vendor/react/promise" />
+      <path value="$PROJECT_DIR$/vendor-bin/csfixer/vendor/react/stream" />
+      <path value="$PROJECT_DIR$/vendor-bin/csfixer/vendor/react/cache" />
+      <path value="$PROJECT_DIR$/vendor/phpstan/phpstan" />
+      <path value="$PROJECT_DIR$/vendor/phpstan/extension-installer" />
+      <path value="$PROJECT_DIR$/vendor-bin/testing/vendor/staabm/side-effects-detector" />
     </include_path>
   </component>
-  <component name="PhpProjectSharedConfiguration" php_language_level="8.1" />
+  <component name="PhpProjectSharedConfiguration" php_language_level="8.3" />
+  <component name="PhpStan">
+    <PhpStan_settings>
+      <PhpStanConfiguration tool_path="$PROJECT_DIR$/vendor/bin/phpstan" />
+      <phpstan_by_interpreter asDefaultInterpreter="true" interpreter_id="1d3bdfd1-8e65-4332-9d45-b755858c07c7" tool_path="$PROJECT_DIR$/vendor/bin/phpstan" timeout="60000" />
+    </PhpStan_settings>
+  </component>
   <component name="PhpStanOptionsConfiguration">
+    <option name="config" value="$PROJECT_DIR$/phpstan.dist.neon" />
     <option name="transferred" value="true" />
   </component>
   <component name="PhpUnit">
     <phpunit_settings>
       <PhpUnitSettings custom_loader_path="$PROJECT_DIR$/vendor-bin/testing/vendor/autoload.php" />
+      <PhpUnitSettings custom_loader_path="$PROJECT_DIR$/vendor-bin/csfixer/vendor/autoload.php" />
       <PhpUnitSettings configuration_file_path="$PROJECT_DIR$/phpunit.xml" custom_loader_path="$PROJECT_DIR$/vendor/autoload.php" use_configuration_file="true" />
       <PhpUnitSettings custom_loader_path="$PROJECT_DIR$/vendor-bin/static/vendor/autoload.php" />
     </phpunit_settings>
@@ -211,6 +205,7 @@
   <component name="Psalm">
     <Psalm_settings>
       <PsalmConfiguration tool_path="$PROJECT_DIR$/vendor/bin/psalm" />
+      <psalm_fixer_by_interpreter asDefaultInterpreter="true" interpreter_id="1d3bdfd1-8e65-4332-9d45-b755858c07c7" tool_path="$PROJECT_DIR$/vendor/bin/psalm" timeout="60000" />
     </Psalm_settings>
   </component>
   <component name="PsalmOptionsConfiguration">

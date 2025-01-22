@@ -4,16 +4,17 @@ declare(strict_types=1);
 
 namespace Yivoff\JwtRefreshBundle\Test\Unit;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use Yivoff\JwtRefreshBundle\Shared\TokenIdGenerator;
 
 use function strlen;
 
 /**
- * @covers \Yivoff\JwtRefreshBundle\Shared\TokenIdGenerator
  *
  * @internal
  */
+#[CoversClass(TokenIdGenerator::class)]
 class TokenIdGeneratorTest extends TestCase
 {
     public function testIdGeneration(): void

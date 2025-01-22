@@ -4,23 +4,26 @@
   "description": "Token Refresh for JWT. Independent of persistence layer, splitting id/hash for verification",
   "license": "MIT",
   "require": {
-    "php": ">=8.1",
-    "lexik/jwt-authentication-bundle": "^v2.20.3",
-    "symfony/config": "^6.3|^7.0.0",
-    "symfony/dependency-injection": "^6.3|^7.0.0",
-    "symfony/framework-bundle": "^6.3|^7.0.0"
+    "php": ">=8.3",
+    "lexik/jwt-authentication-bundle": "^v3.1.1",
+    "symfony/config": "^v7.2.0",
+    "symfony/dependency-injection": "^v7.2.0",
+    "symfony/framework-bundle": "^v7.2.2"
   },
   "require-dev": {
     "bamarni/composer-bin-plugin": "^1.8.2",
+    "symfony/console": "^7.2.0",
     "nyholm/symfony-bundle-test": "dev-master",
-    "symfony/console": "^6.3|^7.0.0"
+    "phpstan/phpstan": "^2.1",
+    "phpstan/extension-installer": "^1.4"
   },
   "suggest": {
-    "symfony/console": "^6.3|^7.0.0"
+    "symfony/console": "^7.2.0"
   },
   "config": {
     "allow-plugins": {
-      "bamarni/composer-bin-plugin": true
+      "bamarni/composer-bin-plugin": true,
+      "phpstan/extension-installer": true
     }
   },
   "autoload": {
@@ -34,13 +37,11 @@
     }
   },
   "scripts": {
-    "dev:cs": "vendor-bin/csfixer/vendor/friendsofphp/php-cs-fixer/php-cs-fixer fix",
     "dev:preflight": [
-      "@dev:cs",
-      "@dev:psalm",
-      "@dev:tests"
+      "@dev:tests",
+      "dev:static"
     ],
-    "dev:psalm": "vendor-bin/static/vendor/vimeo/psalm/psalm",
+    "dev:static": "vendor/bin/phpstan",
     "dev:tests": "vendor-bin/testing/vendor/phpunit/phpunit/phpunit",
     "dev:coverage": "vendor-bin/testing/vendor/phpunit/phpunit",
     "dev:tests-pretty": "vendor-bin/testing/vendor/phpunit/phpunit/phpunit --testdox"
