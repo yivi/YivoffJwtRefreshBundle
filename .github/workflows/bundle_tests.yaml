@@ -43,14 +43,15 @@ jobs:
       - name: Run test suite on PHP ${{ matrix.php }} and Symfony ${{ matrix.symfony }}
         run: ./vendor/bin/phpunit --coverage-clover=coverage.xml
 
-      - uses: codecov/codecov-action@v2
+      - uses: codecov/codecov-action@v5
         with:
           files: ./coverage.xml
           fail_ci_if_error: true # optional (default = false)
           verbose: true # optional (default = false)
+          token: ${{ secrets.CODECOV_TOKEN }}
 
-      - name: Run Psalm
-        run: ./vendor/bin/psalm
+      - name: Run PhpStan
+        run: ./vendor/bin/phpstan
 
   php-cs-fixer:
     runs-on: ubuntu-latest
